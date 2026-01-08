@@ -11,7 +11,15 @@
 body{
   margin:0;
   font-family:'Patrick Hand',cursive;
-  background:linear-gradient(180deg,#ffe6f0,#fff7fb,#fff);
+  background:
+    radial-gradient(circle at top,#ffe6f0,#fff7fb,#ffffff),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,182,213,.15) 0px,
+      rgba(255,182,213,.15) 1px,
+      transparent 1px,
+      transparent 20px
+    );
   min-height:100vh;
   overflow-x:hidden;
 }
@@ -23,26 +31,27 @@ body{
   padding:20px;
 }
 .card{
-  background:#fff7fb;
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(14px);
   color:#5a3d4f;
-  padding:28px;
-  border-radius:24px;
+  padding:30px;
+  border-radius:26px;
   max-width:720px;
   width:100%;
-  box-shadow:0 14px 40px rgba(255,105,180,.25);
+  box-shadow:0 18px 50px rgba(255,105,180,.25);
   line-height:1.9;
   text-align:center;
-  animation:pop .5s ease;
+  animation:enter .6s ease;
 }
-@keyframes pop{
-  from{transform:scale(.96);opacity:0}
-  to{transform:scale(1);opacity:1}
+@keyframes enter{
+  from{opacity:0;transform:translateY(20px) scale(.96)}
+  to{opacity:1;transform:none}
 }
 .photo{
   width:150px;height:150px;
   border-radius:50%;
   object-fit:cover;
-  border:5px solid #ffb6d5;
+  border:6px solid rgba(255,182,213,.8);
   margin-bottom:10px;
 }
 .name{
@@ -53,16 +62,16 @@ body{
 }
 @keyframes pulse{
   0%,100%{transform:scale(1)}
-  50%{transform:scale(1.05)}
+  50%{transform:scale(1.06)}
 }
 button{
-  padding:12px 34px;
+  padding:12px 36px;
   border:none;
   border-radius:30px;
   font-size:18px;
   background:#ff69b4;
   color:white;
-  margin-top:22px;
+  margin-top:24px;
   cursor:pointer;
 }
 input{
@@ -79,7 +88,7 @@ input{
   margin-top:8px;
 }
 .progress{
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
 .dot{
   display:inline-block;
@@ -89,6 +98,13 @@ input{
   margin:0 4px;
 }
 .dot.active{background:#ff69b4}
+.slide{
+  animation:slideIn .5s ease;
+}
+@keyframes slideIn{
+  from{opacity:0;transform:translateX(20px)}
+  to{opacity:1;transform:none}
+}
 .react span{
   font-size:28px;
   margin:0 12px;
@@ -96,7 +112,7 @@ input{
 }
 .react-info{
   font-size:14px;
-  opacity:.8;
+  opacity:.85;
   margin-top:8px;
 }
 .heart{
@@ -138,6 +154,7 @@ input{
       <div class="name">💗 Rena Nur Ichsani Pertiwi 💗</div>
       <p><b>Hari ini kamu genap 22 tahun 🎉</b></p>
       <p><b>Selamat ulang tahun, Sayanggggg!</b></p>
+      <small>(yang hari ini lagi aku tuju 🤍)</small>
       <button onclick="next(1)">Lanjut 💕</button>
     </div>
 
@@ -146,7 +163,7 @@ input{
       <p>
 Makasih ya udah lahir dan jadi bagian paling spesial di hidup akuuu.
 Aku bersyukurrr bangetttt bisa nemenin kamu sampai di titik ini.
-Kehadiran kamu bikin hidup aku jauh lebih berwarna.
+Hidup aku jadi lebih berwarna 💗
       </p>
       <button onclick="next(2)">Lanjut 💕</button>
     </div>
@@ -156,18 +173,19 @@ Kehadiran kamu bikin hidup aku jauh lebih berwarna.
       <p>
 Aku tau aku belum sempurna,
 kadang nyebelin,
-kadang ngambek gak jelas (maafin aku yaaa).
-Tapi aku mau terus belajar jadi lebih baik buat kita.
+kadang ngambek gak jelas.
       </p>
+      <small>(ini aku jujur, tanpa dibagus-bagusin)</small>
       <button onclick="next(3)">Lanjut 💕</button>
     </div>
 
     <!-- SLIDE 4 -->
     <div class="slide" id="s4" style="display:none">
       <p>
-Makasih ya sayanggg udah mau ngertiin aku,
-nemenin aku dalam kondisi apa pun,
-dan sabar walaupun jarak sering ganggu kita.
+<b>Makasih ya udah bertahan sejauh ini 🤍</b><br>
+nemenin aku,
+ngertiin aku,
+dan sabar walau jarak sering ganggu kita.
       </p>
       <button onclick="next(4)">Lanjut 💕</button>
     </div>
@@ -177,13 +195,14 @@ dan sabar walaupun jarak sering ganggu kita.
       <p>
 Aku doain kamu selalu dikasih kebahagiaan,
 semua keinginan kamu dipermudah satu per satuuu,
-dan selalu dikasih yang terbaik sama Allah.
+dan kamu bahagia… dengan atau tanpa aku nanti 🫂
       </p>
       <button onclick="next(5)">Lanjut 💕</button>
     </div>
 
     <!-- SLIDE 6 -->
     <div class="slide" id="s6" style="display:none">
+      <p><b>Boleh aku egois sedikit di sini?</b></p>
       <p>
 Aku tulus sayang sama kamu,
 dan aku mau terus berjuang bareng kamu,
@@ -201,16 +220,16 @@ jangan pernah bosen jadi rumah buat aku pulang 🤍
         <span onclick="react('😭')">😭</span>
         <span onclick="react('🥹')">🥹</span>
       </div>
-      <div class="react-info">(boleh dipencet yaa 🤭)</div>
+      <div class="react-info">
+        Kalau senyum pencet 💗 · kalau terharu 😭 · kalau kangen 🥹
+      </div>
 
       <button onclick="next(6)">Lanjut 💕</button>
     </div>
 
     <!-- SLIDE 7 -->
     <div class="slide" id="s7" style="display:none">
-      <p>
-Sekarang kamu baca ini pas ulang tahun kamu…
-      </p>
+      <p>(sekarang jamnya lewat tengah malam…)</p>
       <p>
 Tapi di waktu yang sama,
 aku lagi di jalan buat kamu.
@@ -220,9 +239,7 @@ Aku berangkat jam 8 malam,
 dan kalau semua lancar,
 aku bakal sampai subuh nanti.
       </p>
-      <p>
-Tunggu aku sampai ya, sayang 🤍
-      </p>
+      <p><b>Tunggu aku sampai ya, sayang 🤍</b></p>
       <button onclick="wa()">Balas Aku 💬</button>
     </div>
 
@@ -248,6 +265,7 @@ function next(n){
   document.getElementById("s"+(n+1)).style.display="block";
   current=n+1;
   renderDots();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function renderDots(){
@@ -270,7 +288,7 @@ function react(e){
 }
 
 function confetti(){
-  for(let i=0;i<14;i++)react("🎉");
+  for(let i=0;i<12;i++)react("🎉");
 }
 
 function wa(){
