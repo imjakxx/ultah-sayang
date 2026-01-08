@@ -15,10 +15,15 @@ html,body{
 }
 *{-webkit-tap-highlight-color:transparent}
 .screen{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
 }
 .card{
-  width:100%;max-width:520px;
+  width:100%;
+  max-width:520px;
   background:rgba(255,235,245,.09);
   backdrop-filter:blur(16px);
   border-radius:28px;
@@ -30,59 +35,104 @@ html,body{
   .card{max-width:900px;padding:56px}
 }
 button{
-  margin-top:20px;padding:12px 36px;font-size:18px;
-  border:none;border-radius:30px;background:#ff5fa2;color:#120014;cursor:pointer;
+  margin-top:18px;
+  padding:12px 36px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  background:#ff5fa2;
+  color:#120014;
+  cursor:pointer;
 }
 button:disabled{opacity:.6}
 input{
-  padding:12px;border-radius:14px;border:none;font-size:18px;width:220px;text-align:center;
+  padding:12px;
+  border-radius:14px;
+  border:none;
+  font-size:18px;
+  width:220px;
+  text-align:center;
 }
-small{display:block;margin-top:10px;font-size:14px;opacity:.7}
+small{
+  display:block;
+  margin-top:10px;
+  font-size:14px;
+  opacity:.7;
+}
 .slide{display:none}
 .slide.active{display:block}
 .photo{
-  width:150px;height:150px;border-radius:50%;object-fit:cover;
-  border:5px solid #ff5fa2;margin-bottom:12px;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid #ff5fa2;
+  margin-bottom:12px;
 }
 .name{font-size:22px;margin-bottom:18px}
 .emoline{
-  border-left:3px solid #ff5fa2;padding-left:14px;margin:14px 0;text-align:left;
+  border-left:3px solid #ff5fa2;
+  padding-left:14px;
+  margin:14px 0;
+  text-align:left;
 }
-.heart{
-  position:fixed;top:-10px;font-size:24px;animation:fall 4s linear;
-}
-@keyframes fall{to{transform:translateY(110vh);opacity:0}}
 .progress{margin-bottom:10px}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5c1b3a;margin:0 3px}
+.dot{
+  display:inline-block;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:#5c1b3a;
+  margin:0 3px
+}
 .dot.on{background:#ff5fa2}
+.heart{
+  position:fixed;
+  top:-10px;
+  font-size:24px;
+  animation:fall 4s linear;
+}
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0}
+}
+.signature{
+  position:absolute;
+  top:16px;
+  right:22px;
+  font-size:14px;
+  opacity:.6
+}
 </style>
 </head>
 
 <body>
 
+<!-- AUDIO -->
+<audio id="bgm" src="lagu.mp3" loop></audio>
+
 <!-- LOGIN -->
 <div class="screen" id="login">
   <div class="card">
     <h2>Hai kamu 🤍</h2>
-    <p>Masukin tanggal jadian kita ya</p>
-    <input id="pass" placeholder="16">
-    <small>(16 Agustus 2025)</small>
+    <p>Ada satu tanggal yang cuma kita berdua yang tau</p>
+    <input id="pass" placeholder="••">
+    <small>(petunjuk kecil: hari kita mulai)</small>
     <button onclick="unlock()">Masuk 💗</button>
-    <small>pelan-pelan bacanya… ini aku bikinnya sambil OTW 🤍</small>
+    <small>pelan-pelan bacanya ya… aku bikinnya sambil mikirin kamu 🤍</small>
   </div>
 </div>
 
 <!-- CONTENT -->
 <div class="screen" id="content" style="display:none">
   <div class="card">
+    <div class="signature">pelan-pelan 🤍</div>
     <div class="progress" id="prog"></div>
 
     <!-- SLIDE 1 -->
     <div class="slide active">
-      <img src="foto.jpg" class="photo">
+      <img src="foto.jpg" class="photo" onerror="this.style.display='none'">
       <div class="name">💗 Rena Nur Ichsani Pertiwi 💗</div>
       <p><b>Selamat ulang tahun ke-22, Sayanggggg 🎉</b></p>
-      <small>(pelan-pelan ya…)</small>
+      <small>(jangan diburu ya…)</small>
       <button onclick="next()">Pelan-pelan 💕</button>
     </div>
 
@@ -101,29 +151,42 @@ Dan sampai sekarang,
 aku masih bersyukur tiap hari,
 karena semesta ngenalin aku ke kamu 🤍
       </div>
-      <small>(pelan-pelan ya… masih ada 🤍)</small>
-      <button onclick="next()">Lanjut ya…</button>
+      <small>(masih ada…)</small>
+      <button onclick="next()">Lanjut 🤍</button>
     </div>
 
     <!-- SLIDE 3 -->
     <div class="slide">
       <div class="emoline">
+Aku sebenernya mau sok kuat,
+tapi nyatanya aku kangen kamu.
+Dan iya… aku kalah 😔🤍
+
 Aku tau aku belum sempurna,
 kadang nyebelin,
 kadang ngambek gak jelas.
-
-Dan mungkin aku masih sering egois,
-belum banyak ngerti kamu.
-
-Aku minta maaf ya…
-aku lagi belajar pelan-pelan
-buat jadi lebih baik buat kamu.
       </div>
-      <small>(aku sengaja nulis bagian ini lama)</small>
+      <small>(aku nulis bagian ini lama…)</small>
       <button onclick="next()">Masih ada 🤍</button>
     </div>
 
-    <!-- SLIDE 4 (JEDA WAJIB) -->
+    <!-- SLIDE 4 (JEDA) -->
+    <div class="slide">
+      <div class="emoline">
+Sebenernya aku sempet mikir,
+“kebanyakan gak ya…”
+tapi yaudah,
+soalnya ini kamu 😤🤍
+
+Dan mungkin aku masih sering egois,
+belum banyak ngerti kamu.
+Aku minta maaf ya…
+      </div>
+      <small>(ambil napas dulu ya…)</small>
+      <button id="pauseBtn" disabled>ambil napas dulu…</button>
+    </div>
+
+    <!-- SLIDE 5 -->
     <div class="slide">
       <div class="emoline">
 Makasih ya udah sabar,
@@ -133,21 +196,20 @@ walaupun jarak sering ganggu kita.
 
 Beneran makasih 🤍
       </div>
-      <small>(ambil napas dulu ya…)</small>
-      <button id="pauseBtn" disabled>ambil napas dulu…</button>
+      <small>(sedikit lagi…)</small>
+      <button onclick="next()">Lanjut 🤍</button>
     </div>
 
-    <!-- SLIDE 5 -->
+    <!-- SLIDE 6 -->
     <div class="slide">
       <div class="emoline">
-Sekarang kamu lagi baca ini,
-dan di waktu yang sama
+Waktu kamu baca ini,
 aku lagi OTW dari Bekasi ke Jogja.
-
-Aku berangkat jam 8 malam.
-Tunggu aku sampai ya, sayang 🤍
+Aku berangkat jam 8 malam,
+dan beberapa jam lagi…
+aku ketemu kamu 🤍
       </div>
-      <small>(abis ini… dunia nyata 🤍)</small>
+      <small>(abis ini… dunia nyata)</small>
       <button onclick="wa()">Balas Aku 💬</button>
     </div>
 
@@ -160,43 +222,56 @@ let index=0;
 
 function dots(){
   const d=document.querySelectorAll(".slide").length;
-  let h=""; for(let i=0;i<d;i++) h+=`<span class="dot ${i<=index?'on':''}"></span>`;
+  let h="";
+  for(let i=0;i<d;i++) h+=`<span class="dot ${i<=index?'on':''}"></span>`;
   prog.innerHTML=h;
+}
+
+function playMusic(){
+  const a=document.getElementById("bgm");
+  a.volume=0.6;
+  a.play().catch(()=>{});
 }
 
 function unlock(){
   if(pass.value===PASSWORD){
     login.style.display="none";
     content.style.display="flex";
-    dots(); fall();
-  } else alert("Salahhh 😝");
+    dots(); fall(); playMusic();
+  } else alert("salah dikit 😝 coba inget lagi");
 }
 
 function next(){
   const slides=document.querySelectorAll(".slide");
   const btn=slides[index].querySelector("button");
-  btn.disabled=true; const t=btn.innerText; btn.innerText="baca dulu ya… 🤍";
-  setTimeout(()=>{btn.disabled=false; btn.innerText=t;},2000);
+  btn.disabled=true;
+  const t=btn.innerText;
+  btn.innerText="baca dulu ya… 🤍";
+  setTimeout(()=>{btn.disabled=false;btn.innerText=t},2000);
 
   slides[index].classList.remove("active");
-  index++; slides[index].classList.add("active");
+  index++;
+  slides[index].classList.add("active");
   dots(); fall();
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
 setTimeout(()=>{
   const p=document.getElementById("pauseBtn");
-  if(p){ p.disabled=false; p.innerText="lanjut 🤍"; }
+  if(p){p.disabled=false;p.innerText="lanjut 🤍";}
 },3000);
 
 function wa(){
-  window.open("https://wa.me/6281297203132?text=Aku%20udah%20baca%20semuanya…%0AMakasih%20ya%20udah%20niat%20banget%20buat%20aku%20🤍");
+  window.open(
+    "https://wa.me/6281297203132?text=Aku%20udah%20baca%20semuanya…%0AMakasih%20ya%20udah%20niat%20banget%20buat%20aku%20🤍"
+  );
 }
 
 function fall(){
   for(let i=0;i<4;i++){
     const h=document.createElement("div");
-    h.className="heart"; h.innerText="💗";
+    h.className="heart";
+    h.innerText="💗";
     h.style.left=Math.random()*100+"vw";
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),4000);
