@@ -2,51 +2,123 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>For You 🤍</title>
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+/* RESET & BASE */
+*{margin:0;padding:0;box-sizing:border-box}
 html,body{
-  margin:0;padding:0;width:100%;height:100%;
-  font-family:'Patrick Hand',cursive;
-  background:radial-gradient(circle at center,#2a0033,#120014 70%);
+  width:100%;height:100%;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#120014,#2a0033,#1b0024);
   color:#ffe6f2;
+  overflow-x:hidden;
 }
-*{-webkit-tap-highlight-color:transparent}
+body{display:flex;align-items:center;justify-content:center}
 
+/* BACKGROUND DECOR */
+.bg-glow{
+  position:fixed;
+  inset:-20%;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(255,121,184,.25),transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(255,180,220,.2),transparent 45%);
+  z-index:-1;
+}
+
+/* HEART FALL */
+.heart{
+  position:fixed;top:-10px;
+  font-size:22px;
+  animation:fall linear forwards;
+  pointer-events:none;
+}
+@keyframes fall{
+  to{transform:translateY(120vh);opacity:0}
+}
+
+/* LAYOUT */
 .screen{
   min-height:100vh;
+  width:100%;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:32px;
+  padding:24px;
 }
 .card{
   width:100%;
-  max-width:780px;
+  max-width:900px;
   background:rgba(255,235,245,.12);
   backdrop-filter:blur(18px);
-  border-radius:30px;
-  padding:44px;
-  box-shadow:0 0 60px rgba(255,95,162,.3);
+  border-radius:32px;
+  padding:48px;
+  box-shadow:0 0 80px rgba(255,95,162,.35);
   position:relative;
 }
 @media(min-width:1024px){
-  .card{max-width:1100px;padding:64px}
+  .card{max-width:1200px;padding:72px}
 }
 
-.signature{
-  position:absolute;top:18px;right:26px;
-  font-size:14px;opacity:.65
+/* LOGIN */
+.login-title{
+  font-family:'Patrick Hand',cursive;
+  font-size:34px;
+  margin-bottom:10px;
+}
+.login-sub{
+  opacity:.85;
+  margin-bottom:28px;
+}
+input{
+  width:260px;
+  padding:14px 18px;
+  font-size:18px;
+  border:none;
+  border-radius:18px;
+  outline:none;
+  text-align:center;
+  background:#f4d6e5;
+  color:#2a0033;
+}
+small{display:block;margin-top:10px;opacity:.75}
+
+/* BUTTON */
+.btn{
+  margin-top:26px;
+  padding:14px 34px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  font-size:18px;
+  background:#ff79b8;
+  color:#1b0024;
+  transition:.25s;
+}
+.btn:hover{transform:scale(1.05)}
+.btn-secondary{
+  background:transparent;
+  border:1px solid rgba(255,182,217,.6);
+  color:#ffd1e8;
 }
 
-/* SLIDE */
+/* SLIDE SYSTEM */
+.progress{text-align:center;margin-bottom:16px}
+.dot{
+  display:inline-block;width:10px;height:10px;
+  border-radius:50%;
+  background:#5c1b3a;margin:0 4px
+}
+.dot.on{background:#ff79b8}
+
 .slide{
   display:none;
   opacity:0;
-  transform:translateY(18px);
-  transition:.55s ease;
+  transform:translateY(20px);
+  transition:.6s ease;
 }
 .slide.active{
   display:block;
@@ -56,78 +128,64 @@ html,body{
 
 /* CONTENT */
 .photo{
-  width:180px;height:180px;border-radius:50%;
-  object-fit:cover;border:6px solid #ff79b8;
+  width:190px;height:190px;
+  border-radius:50%;
+  object-fit:cover;
+  border:6px solid #ff79b8;
+  margin-bottom:18px;
+}
+.name{
+  font-family:'Patrick Hand',cursive;
+  font-size:28px;
   margin-bottom:16px;
 }
-.name{font-size:26px;margin-bottom:20px}
-
-.emoline{
-  border-left:4px solid #ff79b8;
-  padding-left:20px;
-  margin:20px 0;
-  line-height:1.7;
+.text{
   font-size:19px;
+  line-height:1.8;
+  margin:18px 0;
 }
-
-small{display:block;margin-top:12px;opacity:.75;text-align:center}
+.text span{display:block;margin-bottom:14px}
 
 /* NAV */
-.btn-wrap{
-  display:flex;justify-content:center;gap:14px;
-  margin-top:28px;flex-wrap:wrap
+.nav{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  margin-top:30px;
+  flex-wrap:wrap;
 }
-button{
-  padding:14px 30px;font-size:18px;
-  border-radius:32px;border:none;cursor:pointer
-}
-.btn-next{background:#ff79b8;color:#120014}
-.btn-back{background:transparent;color:#ffd1e8;border:1px solid rgba(255,182,217,.6)}
 
-/* PROGRESS */
-.progress{text-align:center;margin-bottom:10px}
-.dot{
-  display:inline-block;width:9px;height:9px;border-radius:50%;
-  background:#5c1b3a;margin:0 3px
-}
-.dot.on{background:#ff79b8}
-
-/* REACT */
-#react{
+/* REACT TEXT */
+.react{
+  text-align:center;
+  margin-bottom:16px;
+  opacity:.8;
   font-size:15px;
-  opacity:.85;
-  margin-bottom:14px;
-  transition:.3s
 }
 
-/* FX */
-.heart{
-  position:fixed;top:-10px;
-  font-size:24px;animation:fall 4s linear
-}
-@keyframes fall{to{transform:translateY(120vh);opacity:0}}
-
-input{
-  padding:14px;border-radius:16px;border:none;
-  font-size:18px;width:240px;text-align:center
+/* SIGN */
+.sign{
+  position:absolute;
+  top:18px;right:26px;
+  font-size:13px;
+  opacity:.6;
 }
 </style>
 </head>
 
 <body>
+<div class="bg-glow"></div>
 
 <audio id="bgm" src="lagu.mp3" loop></audio>
 
 <!-- LOGIN -->
 <div class="screen" id="login">
   <div class="card">
-    <h2>Hai kamu 🤍🥹</h2>
-    <p>Ada satu tanggal yang cuma kita berdua yang tau 😌</p>
+    <div class="login-title">Hai kamu 🤍🥹</div>
+    <div class="login-sub">Ada satu tanggal yang cuma kita berdua yang tau 😌</div>
     <input id="pass" placeholder="••">
     <small>(petunjuk kecil: hari kita mulai ✨)</small>
-    <div class="btn-wrap">
-      <button class="btn-next" onclick="unlock()">Masuk 💗</button>
-    </div>
+    <button class="btn" onclick="unlock()">Masuk 💗</button>
     <small>pelan-pelan bacanya ya… aku ngetik ini sambil mikirin kamu 🤍</small>
   </div>
 </div>
@@ -135,116 +193,121 @@ input{
 <!-- CONTENT -->
 <div class="screen" id="content" style="display:none">
   <div class="card">
-    <div class="signature">pelan-pelan 🤍</div>
+    <div class="sign">pelan-pelan 🤍</div>
     <div class="progress" id="prog"></div>
-    <div id="react">hehe 🤍</div>
+    <div class="react" id="react">hehe 🤍</div>
 
     <!-- SLIDE 1 -->
     <div class="slide active">
       <img src="foto.jpg" class="photo" onerror="this.style.display='none'">
       <div class="name">💗 Rena Nur Ichsani Pertiwi 💗</div>
-      <p><b>Selamat ulang tahun ke-22, Sayanggggg 🎂🎉</b></p>
-      <small>(ini panjang & niat, jangan diburu ya 😌)</small>
-      <div class="btn-wrap">
-        <button class="btn-next" onclick="next()">Mulai 🤍</button>
+      <div class="text">
+        <span>Selamat ulang tahun ke-22, Sayanggggg 🎂🎉</span>
+        <span>Ini aku bikin panjang, niat, dan serius… jangan diburu ya 🥹</span>
+      </div>
+      <div class="nav">
+        <button class="btn" onclick="next()">Mulai 🤍</button>
       </div>
     </div>
 
     <!-- SLIDE 2 -->
     <div class="slide">
-      <div class="emoline">
-Selamat ulang tahun, Sayanggggg! 🥹💗  
-Makasih ya udah lahir dan jadi bagian paling spesial di hidup akuuu.  
-Aku bersyukurrr bangetttt bisa nemenin kamu sampai di titik ini ✨  
-Kehadiran kamu bikin hidup aku jauh lebih berwarna dan seru 🌈
+      <div class="text">
+        <span>Selamat ulang tahun, Sayanggggg! 🥹💗</span>
+        <span>Makasih ya udah lahir dan jadi bagian paling spesial di hidup akuuu.</span>
+        <span>Aku bersyukur banget bisa nemenin kamu sampai di titik ini ✨</span>
+        <span>Kehadiran kamu bikin hidup aku yang tadinya biasa aja jadi jauh lebih berwarna 🌈</span>
       </div>
-      <div class="btn-wrap">
-        <button class="btn-back" onclick="prev()">⬅</button>
-        <button class="btn-next" onclick="next()">Lanjut 😌</button>
+      <div class="nav">
+        <button class="btn btn-secondary" onclick="prev()">⬅</button>
+        <button class="btn" onclick="next()">Lanjut 😌</button>
       </div>
     </div>
 
     <!-- SLIDE 3 -->
     <div class="slide">
-      <div class="emoline">
-Aku tau aku belum bisa jadi cowok yang sempurna 😔  
-Kadang nyebelin, kadang egois, kadang ngambek gak jelas 😤  
-Tapi aku janji, aku lagi belajar jadi lebih baik  
-buat kita, pelan-pelan tapi serius 🤍
-      </div>
-      <div class="btn-wrap">
-        <button class="btn-back" onclick="prev()">⬅</button>
-        <button class="btn-next" onclick="next()">Lanjut 🥹</button>
+      <div class="text">
+  <span>Aku sadar selama ini aku masih sering egois 😔</span>
+  <span>belum cukup peka, belum selalu bisa ngertiin kamu sepenuhnya.</span>
+  <span>Aku minta maaf ya… beneran 🤍</span>
+  <span>Tapi aku mau kamu tau satu hal:</span>
+  <span><b>aku bakal jadi versi yang lebih baik,</b></span>
+  <span><b>bukan cuma buat kamu, tapi buat kita.</b></span>
+  <span>Biar nanti, kalau kita lihat ke belakang,</span>
+  <span>kita bisa bilang: “kita tumbuh bareng.” 🥹✨</span>
+</div>
+      <div class="nav">
+        <button class="btn btn-secondary" onclick="prev()">⬅</button>
+        <button class="btn" onclick="next()">Lanjut 🥹</button>
       </div>
     </div>
 
     <!-- SLIDE 4 -->
     <div class="slide">
-      <div class="emoline">
-Makasih ya sayanggg 😭🤍  
-udah mau selalu ngertiin aku,  
-nemenin aku di kondisi apa pun,  
-dan maafin aku berkali-kali.  
-Kamu kuat banget, dan aku kagum 😌✨
+      <div class="text">
+        <span>Makasih ya sayanggg 😭🤍</span>
+        <span>udah mau selalu ngertiin aku,</span>
+        <span>nemenin aku di kondisi apa pun,</span>
+        <span>dan selalu maafin aku berkali-kali.</span>
+        <span>Kamu kuat, sabar, dan hebat banget ✨</span>
       </div>
-      <div class="btn-wrap">
-        <button class="btn-back" onclick="prev()">⬅</button>
-        <button class="btn-next" onclick="next()">Lanjut 💗</button>
+      <div class="nav">
+        <button class="btn btn-secondary" onclick="prev()">⬅</button>
+        <button class="btn" onclick="next()">Lanjut 💗</button>
       </div>
     </div>
 
     <!-- SLIDE 5 -->
     <div class="slide">
-      <div class="emoline">
-Aku tau LDR itu capek 🥲  
-kangen, nunggu, mikir terus.  
-Tapi makasih ya…  
-kamu tetep milih aku dan bertahan 🤍🥹
+      <div class="text">
+        <span>Aku tau LDR itu gak mudah 🥲</span>
+        <span>Kangen, nunggu, mikir terus.</span>
+        <span>Tapi makasih ya…</span>
+        <span>kamu tetep milih aku dan bertahan 🤍</span>
       </div>
-      <div class="btn-wrap">
-        <button class="btn-back" onclick="prev()">⬅</button>
-        <button class="btn-next" onclick="next()">Lanjut 🤍</button>
+      <div class="nav">
+        <button class="btn btn-secondary" onclick="prev()">⬅</button>
+        <button class="btn" onclick="next()">Lanjut 🤍</button>
       </div>
     </div>
 
     <!-- SLIDE 6 -->
     <div class="slide">
-      <div class="emoline">
-Semoga suatu hari nanti kita gak perlu kepisah jarak lagi 🏡✨  
-Kamu harus sehat terus yaa 😤💗  
-Aku pengen lihat kamu bahagia di versi terbaik kamu 🥹
+      <div class="text">
+        <span>Semoga suatu hari nanti kita gak perlu kepisah jarak lagi 🏡✨</span>
+        <span>Kamu harus sehat terus yaaa 😤💗</span>
+        <span>Aku pengen lihat kamu bahagia di versi terbaik kamu 🥹</span>
       </div>
-      <div class="btn-wrap">
-        <button class="btn-back" onclick="prev()">⬅</button>
-        <button class="btn-next" onclick="next()">Lanjut 🥰</button>
+      <div class="nav">
+        <button class="btn btn-secondary" onclick="prev()">⬅</button>
+        <button class="btn" onclick="next()">Lanjut 🥰</button>
       </div>
     </div>
 
     <!-- SLIDE 7 -->
     <div class="slide">
-      <div class="emoline">
-Aku doain kamu selalu bahagia 🤲🤍  
-keinginan kamu satu-satu dimudahin,  
-dan cantikkk + imuppp + lutcuuu  
-nambah terus tanpa abis-abis 😌💖
+      <div class="text">
+        <span>Aku doain kamu selalu bahagia 🤲🤍</span>
+        <span>semua keinginan kamu dimudahin satu per satu,</span>
+        <span>dan cantik + imut + lucu kamu nambah terus tanpa abis 😌💖</span>
       </div>
-      <div class="btn-wrap">
-        <button class="btn-back" onclick="prev()">⬅</button>
-        <button class="btn-next" onclick="next()">Lanjut 🥹</button>
+      <div class="nav">
+        <button class="btn btn-secondary" onclick="prev()">⬅</button>
+        <button class="btn" onclick="next()">Lanjut 🥹</button>
       </div>
     </div>
 
     <!-- SLIDE 8 -->
     <div class="slide">
-      <div class="emoline">
-Sekarang kamu baca ini 📖  
-dan di waktu yang sama  
-aku lagi OTW dari Bekasi ke Jogja 🚗💨  
-Tunggu aku ya, Sayang 🤍😭
+      <div class="text">
+        <span>Sekarang kamu baca ini 📖</span>
+        <span>dan di waktu yang sama…</span>
+        <span>aku lagi OTW dari Bekasi ke Jogja 🚗💨</span>
+        <span>Tunggu aku ya, Sayang 🤍😭</span>
       </div>
-      <div class="btn-wrap">
-        <button class="btn-back" onclick="prev()">⬅</button>
-        <button class="btn-next" onclick="wa()">Balas Aku 💬💗</button>
+      <div class="nav">
+        <button class="btn btn-secondary" onclick="prev()">⬅</button>
+        <button class="btn" onclick="wa()">Balas Aku 💬💗</button>
       </div>
     </div>
 
@@ -253,70 +316,62 @@ Tunggu aku ya, Sayang 🤍😭
 
 <script>
 const PASSWORD="16";
-let index=0, lock=false;
+let index=0,lock=false;
 
 const reactions=[
-  "hehe 🤍","ih kamu lanjut 🥹","aku tau kamu senyum 😌",
-  "bacanya pelan-pelan ya 😤","kok kamu manis sih 🤍",
-  "aku ngetik ini lama loh 😭","dikit lagi ya 🥹","aku nunggu balasan kamu 🤍"
+  "hehe 🤍","aku tau kamu senyum 😌","jangan lompat-lompat 😤",
+  "pelan-pelan bacanya ya 🥹","ini aku serius loh 😭",
+  "aku mikirin kamu terus 🤍","dikit lagi ya 🥹","aku nunggu balasan kamu 🤍"
 ];
 
-function dots(){
-  const slides=document.querySelectorAll(".slide");
-  document.getElementById("prog").innerHTML=
-    [...slides].map((_,i)=>`<span class="dot ${i<=index?'on':''}"></span>`).join("");
-}
-
 function unlock(){
-  if(document.getElementById("pass").value===PASSWORD){
+  if(pass.value===PASSWORD){
     login.style.display="none";
     content.style.display="flex";
-    playMusic(); dots(); fall();
+    playMusic();dots();fall();
   }else alert("coba inget lagi 🤍");
 }
 
-function show(){
+function dots(){
   const slides=document.querySelectorAll(".slide");
-  slides.forEach((s,i)=>s.classList.toggle("active",i===index));
-  dots();
+  prog.innerHTML=[...slides].map((_,i)=>`<span class="dot ${i<=index?'on':''}"></span>`).join("");
+}
+
+function show(){
+  document.querySelectorAll(".slide").forEach((s,i)=>s.classList.toggle("active",i===index));
   react.style.opacity=0;
   setTimeout(()=>{
     react.innerText=reactions[index]||"🤍";
-    react.style.opacity=.85;
+    react.style.opacity=.8;
   },200);
-  window.scrollTo({top:0,behavior:"smooth"});
+  dots();window.scrollTo({top:0});
 }
 
 function next(){
-  if(lock) return; lock=true; setTimeout(()=>lock=false,850);
-  if(index<document.querySelectorAll(".slide").length-1){
-    index++; show(); fall();
-  }
+  if(lock)return;lock=true;setTimeout(()=>lock=false,700);
+  if(index<document.querySelectorAll(".slide").length-1){index++;show();fall();}
 }
 function prev(){
-  if(lock) return; lock=true; setTimeout(()=>lock=false,600);
-  if(index>0){ index--; show(); }
+  if(lock)return;lock=true;setTimeout(()=>lock=false,500);
+  if(index>0){index--;show();}
 }
 
 function playMusic(){
-  bgm.volume=0.6; bgm.play().catch(()=>{});
+  bgm.volume=.6;bgm.play().catch(()=>{});
 }
-
 function wa(){
   window.open("https://wa.me/6281297203132?text=Aku%20udah%20baca%20semuanya…%20aku%20mewek%20🤍");
 }
-
 function fall(){
-  for(let i=0;i<4;i++){
+  for(let i=0;i<5;i++){
     const h=document.createElement("div");
-    h.className="heart"; h.innerText="💗";
+    h.className="heart";h.innerText="💗";
     h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(3+Math.random()*2)+"s";
     document.body.appendChild(h);
-    setTimeout(()=>h.remove(),4000);
+    setTimeout(()=>h.remove(),5000);
   }
 }
 </script>
-
 </body>
 </html>
-
