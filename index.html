@@ -2,49 +2,77 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<title>For You 💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You 🤍</title>
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 
 <style>
-html,body{
-  margin:0;padding:0;width:100%;height:100%;
+*{box-sizing:border-box}
+body{
+  margin:0;
   font-family:'Patrick Hand',cursive;
-  background:radial-gradient(circle at top,#2a0033,#120014 70%);
+  background:
+    radial-gradient(circle at top,#2a0033,#120014 70%);
+  min-height:100vh;
   color:#ffe6f2;
+  overflow-x:hidden;
 }
-*{-webkit-tap-highlight-color:transparent}
 .screen{
   min-height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
-  padding:24px;
+  align-items:center;
+  padding:20px;
 }
 .card{
-  width:100%;
-  max-width:520px;
-  background:rgba(255,235,245,.09);
-  backdrop-filter:blur(16px);
+  position:relative;
+  background:rgba(255,235,245,.08);
+  backdrop-filter:blur(14px);
   border-radius:28px;
-  padding:32px;
+  padding:30px;
+  max-width:760px;
+  width:100%;
   box-shadow:0 0 40px rgba(255,95,162,.25);
-  text-align:center;
+  animation:enter .6s ease;
 }
-@media(min-width:1024px){
-  .card{max-width:900px;padding:56px}
+@keyframes enter{
+  from{opacity:0;transform:translateY(25px) scale(.95)}
+  to{opacity:1;transform:none}
+}
+.slide{animation:slide .5s ease}
+@keyframes slide{
+  from{opacity:0;transform:translateX(20px)}
+  to{opacity:1;transform:none}
+}
+.photo{
+  width:150px;height:150px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid rgba(255,95,162,.8);
+  margin-bottom:10px;
+}
+.name{
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:18px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.06)}
 }
 button{
-  margin-top:18px;
   padding:12px 36px;
-  font-size:18px;
   border:none;
   border-radius:30px;
+  font-size:18px;
   background:#ff5fa2;
   color:#120014;
+  margin-top:22px;
   cursor:pointer;
+  box-shadow:0 0 18px rgba(255,95,162,.6);
 }
-button:disabled{opacity:.6}
+button:disabled{opacity:.5}
 input{
   padding:12px;
   border-radius:14px;
@@ -53,91 +81,99 @@ input{
   width:220px;
   text-align:center;
 }
-small{
+.hint, small{
   display:block;
-  margin-top:10px;
   font-size:14px;
-  opacity:.7;
+  opacity:.75;
+  margin-top:8px;
 }
-.slide{display:none}
-.slide.active{display:block}
-.photo{
-  width:150px;
-  height:150px;
-  border-radius:50%;
-  object-fit:cover;
-  border:5px solid #ff5fa2;
-  margin-bottom:12px;
-}
-.name{font-size:22px;margin-bottom:18px}
-.emoline{
-  border-left:3px solid #ff5fa2;
-  padding-left:14px;
-  margin:14px 0;
-  text-align:left;
-}
-.progress{margin-bottom:10px}
+.progress{margin-bottom:14px}
 .dot{
   display:inline-block;
   width:8px;height:8px;
   border-radius:50%;
   background:#5c1b3a;
-  margin:0 3px
+  margin:0 4px;
 }
-.dot.on{background:#ff5fa2}
+.dot.active{background:#ff5fa2}
+.back-btn{
+  position:absolute;
+  top:16px;left:18px;
+  font-size:14px;
+  opacity:.7;
+  cursor:pointer;
+}
+.back-btn:hover{opacity:1}
+.accent{
+  font-size:26px;
+  opacity:.8;
+  margin-bottom:10px;
+}
+.emoline{
+  border-left:3px solid #ff5fa2;
+  padding-left:14px;
+  margin:14px 0;
+}
+.react span{
+  font-size:28px;
+  margin:0 12px;
+  cursor:pointer;
+}
+.react-info{font-size:14px;opacity:.8;margin-top:8px}
 .heart{
   position:fixed;
   top:-10px;
-  font-size:24px;
-  animation:fall 4s linear;
+  animation:fall linear infinite;
 }
 @keyframes fall{
   to{transform:translateY(110vh);opacity:0}
 }
-.signature{
-  position:absolute;
-  top:16px;
-  right:22px;
-  font-size:14px;
-  opacity:.6
+.otw{
+  margin:16px 0;
+  font-size:16px;
+  letter-spacing:2px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- AUDIO -->
-<audio id="bgm" src="lagu.mp3" loop></audio>
-
 <!-- LOGIN -->
-<div class="screen" id="login">
+<div class="screen" id="lock">
   <div class="card">
+    <div class="accent">💗</div>
     <h2>Hai kamu 🤍</h2>
-    <p>Ada satu tanggal yang cuma kita berdua yang tau</p>
+    <p>Sebelum masuk,<br>inget satu hal kecil dulu ya.</p>
     <input id="pass" placeholder="••">
-    <small>(petunjuk kecil: hari kita mulai)</small>
-    <button onclick="unlock()">Masuk 💗</button>
-    <small>pelan-pelan bacanya ya… aku bikinnya sambil mikirin kamu 🤍</small>
+    <div class="hint">petunjuk kecil: tanggal jadian kita 💗<br>(16 Agustus 2025)</div>
+    <button onclick="unlock()">Masuk 💕</button>
+    <small>pelan-pelan bacanya…<br>ini aku bikinnya sambil OTW ke kamu 🤍</small>
   </div>
 </div>
 
 <!-- CONTENT -->
 <div class="screen" id="content" style="display:none">
+  <audio id="music" loop>
+    <source src="lagu.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="card">
-    <div class="signature">pelan-pelan 🤍</div>
+    <div class="back-btn" id="backBtn" onclick="back()" style="display:none">← balik sebentar</div>
     <div class="progress" id="prog"></div>
 
     <!-- SLIDE 1 -->
-    <div class="slide active">
-      <img src="foto.jpg" class="photo" onerror="this.style.display='none'">
+    <div class="slide" id="s1">
+      <img src="foto.jpg" class="photo">
       <div class="name">💗 Rena Nur Ichsani Pertiwi 💗</div>
-      <p><b>Selamat ulang tahun ke-22, Sayanggggg 🎉</b></p>
-      <small>(jangan diburu ya…)</small>
-      <button onclick="next()">Pelan-pelan 💕</button>
+      <p><b>Hari ini kamu genap 22 tahun 🎉</b></p>
+      <p><b>Selamat ulang tahun, Sayanggggg!</b></p>
+      <small>(yang hari ini lagi aku tuju 🤍)</small>
+      <button onclick="next(1)">Pelan-pelan 💗</button>
     </div>
 
     <!-- SLIDE 2 -->
-    <div class="slide">
+    <div class="slide" id="s2" style="display:none">
+      <div class="accent">💗</div>
       <div class="emoline">
 Makasih ya udah lahir dan jadi bagian paling spesial di hidup akuuu.
 Aku bersyukurrr bangetttt bisa nemenin kamu sampai di titik ini.
@@ -151,65 +187,138 @@ Dan sampai sekarang,
 aku masih bersyukur tiap hari,
 karena semesta ngenalin aku ke kamu 🤍
       </div>
-      <small>(masih ada…)</small>
-      <button onclick="next()">Lanjut 🤍</button>
+      <small>(aku nulis ini sambil senyum sendiri)</small>
+      <button onclick="next(2)">Lanjut ya…</button>
     </div>
 
     <!-- SLIDE 3 -->
-    <div class="slide">
+    <div class="slide" id="s3" style="display:none">
+      <div class="accent">🤍</div>
       <div class="emoline">
-Aku sebenernya mau sok kuat,
-tapi nyatanya aku kangen kamu.
-Dan iya… aku kalah 😔🤍
-
 Aku tau aku belum sempurna,
 kadang nyebelin,
 kadang ngambek gak jelas.
-      </div>
-      <small>(aku nulis bagian ini lama…)</small>
-      <button onclick="next()">Masih ada 🤍</button>
-    </div>
-
-    <!-- SLIDE 4 (JEDA) -->
-    <div class="slide">
-      <div class="emoline">
-Sebenernya aku sempet mikir,
-“kebanyakan gak ya…”
-tapi yaudah,
-soalnya ini kamu 😤🤍
 
 Dan mungkin aku masih sering egois,
-belum banyak ngerti kamu.
-Aku minta maaf ya…
+masih belum banyak ngerti kamu,
+kadang lebih mikirin perasaan aku sendiri.
+
+Aku minta maaf ya kalau selama ini
+aku sering bikin kamu kesel,
+kecewa,
+atau ngerasa sendirian.
+
+Aku lagi belajar pelan-pelan,
+bukan cuma buat jadi pacar yang lebih baik,
+tapi jadi orang yang lebih dewasa buat kamu.
+
+Semoga ke depannya aku bisa lebih ngertiin kamu,
+lebih peka,
+lebih sabar,
+dan lebih hadir di setiap hal kecil
+yang mungkin selama ini sering aku lewatin.
       </div>
-      <small>(ambil napas dulu ya…)</small>
-      <button id="pauseBtn" disabled>ambil napas dulu…</button>
+      <small>(ini aku jujur, tanpa dibagus-bagusin)</small>
+      <button onclick="next(3)">Masih ada 🤍</button>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide" id="s4" style="display:none">
+      <div class="accent">💗</div>
+      <div class="emoline">
+Makasih ya sayanggg udah mau ngertiin aku,
+nemenin aku dalam kondisi apa pun,
+dan sabar walaupun jarak sering ganggu kita.
+
+Aku tau kamu capek,
+aku tau kamu kadang nahan banyak hal sendiri,
+dan mungkin aku gak selalu bisa ada di samping kamu.
+
+Tapi makasih…
+karena kamu tetep bertahan,
+dan tetep milih aku sejauh ini 🤍
+      </div>
+      <small>(makasih ya udah sejauh ini)</small>
+      <button onclick="next(4)">Sedikit lagi 💕</button>
     </div>
 
     <!-- SLIDE 5 -->
-    <div class="slide">
+    <div class="slide" id="s5" style="display:none">
+      <div class="accent">🌸</div>
       <div class="emoline">
-Makasih ya udah sabar,
-udah mau nungguin aku,
-udah mau tetep milih aku
-walaupun jarak sering ganggu kita.
+Aku doain kamu selalu dikasih kebahagiaan,
+semua keinginan kamu dipermudah satu per satuuu,
+dan selalu dikasih yang terbaik sama Allah.
 
-Beneran makasih 🤍
+Aku pengen kamu bahagia,
+bukan cuma hari ini,
+tapi di hari-hari biasa yang kadang sepi dan capek.
+
+Dan kalau boleh jujur,
+aku pengen jadi salah satu alasan
+kenapa kamu ngerasa aman.
       </div>
-      <small>(sedikit lagi…)</small>
-      <button onclick="next()">Lanjut 🤍</button>
+      <small>(aku beneran doain ini)</small>
+      <button onclick="next(5)" disabled id="pauseBtn">ambil napas dulu…</button>
     </div>
 
     <!-- SLIDE 6 -->
-    <div class="slide">
+    <div class="slide" id="s6" style="display:none">
+      <div class="accent">💗</div>
       <div class="emoline">
-Waktu kamu baca ini,
-aku lagi OTW dari Bekasi ke Jogja.
-Aku berangkat jam 8 malam,
-dan beberapa jam lagi…
-aku ketemu kamu 🤍
+Boleh aku egois sedikit di sini?
+
+Aku tulus sayang sama kamu,
+dan aku mau terus berjuang bareng kamu,
+pelan-pelan,
+hari demi hari.
+
+Aku gak tau nanti ke depannya bakal gimana,
+tapi satu hal yang aku tau sekarang:
+aku milih kamu,
+dan aku mau terus milih kamu,
+selama aku masih dikasih kesempatan.
+
+Stay sama aku ya…
+jangan pernah bosen jadi rumah buat aku pulang 🤍
+
+No matter what happens,
+I’ll always be here to support you through everything.
       </div>
-      <small>(abis ini… dunia nyata)</small>
+
+      <div class="react">
+        <span onclick="react('💗')">💗</span>
+        <span onclick="react('😭')">😭</span>
+        <span onclick="react('🥹')">🥹</span>
+      </div>
+      <div class="react-info">
+        Kalau senyum 💗 · terharu 😭 · kangen 🥹
+      </div>
+
+      <button onclick="next(6)">Baca yang terakhir</button>
+    </div>
+
+    <!-- SLIDE 7 -->
+    <div class="slide" id="s7" style="display:none">
+      <div class="accent">🛤️</div>
+      <div class="emoline">
+Sekarang mungkin kamu lagi baca ini sendirian,
+di layar kecil,
+dengan hati yang lagi campur aduk.
+
+Dan di waktu yang sama,
+aku lagi di perjalanan,
+pelan-pelan,
+menuju kamu.
+
+Aku berangkat jam 8 malam,
+dan kalau semua lancar,
+aku bakal sampai subuh nanti.
+      </div>
+
+      <div class="otw">Bekasi ━━━━━━━━▶ Jogja</div>
+      <p><b>Tunggu aku sampai ya, sayang 🤍</b></p>
+
       <button onclick="wa()">Balas Aku 💬</button>
     </div>
 
@@ -218,65 +327,79 @@ aku ketemu kamu 🤍
 
 <script>
 const PASSWORD="16";
-let index=0;
-
-function dots(){
-  const d=document.querySelectorAll(".slide").length;
-  let h="";
-  for(let i=0;i<d;i++) h+=`<span class="dot ${i<=index?'on':''}"></span>`;
-  prog.innerHTML=h;
-}
-
-function playMusic(){
-  const a=document.getElementById("bgm");
-  a.volume=0.6;
-  a.play().catch(()=>{});
-}
+let current=1,total=7;
 
 function unlock(){
   if(pass.value===PASSWORD){
-    login.style.display="none";
+    lock.style.display="none";
     content.style.display="flex";
-    dots(); fall(); playMusic();
-  } else alert("salah dikit 😝 coba inget lagi");
+    music.play();
+    confetti();
+    renderDots();
+  } else alert("Salahhh 😝");
 }
 
-function next(){
-  const slides=document.querySelectorAll(".slide");
-  const btn=slides[index].querySelector("button");
-  btn.disabled=true;
-  const t=btn.innerText;
-  btn.innerText="baca dulu ya… 🤍";
-  setTimeout(()=>{btn.disabled=false;btn.innerText=t},2000);
-
-  slides[index].classList.remove("active");
-  index++;
-  slides[index].classList.add("active");
-  dots(); fall();
-  window.scrollTo({top:0,behavior:"smooth"});
+function next(n){
+  document.getElementById("s"+n).style.display="none";
+  document.getElementById("s"+(n+1)).style.display="block";
+  current=n+1;
+  updateUI();
 }
 
-setTimeout(()=>{
-  const p=document.getElementById("pauseBtn");
-  if(p){p.disabled=false;p.innerText="lanjut 🤍";}
-},3000);
+function back(){
+  if(current>1){
+    document.getElementById("s"+current).style.display="none";
+    document.getElementById("s"+(current-1)).style.display="block";
+    current--;
+    updateUI();
+  }
+}
+
+function updateUI(){
+  renderDots();
+  backBtn.style.display = current>1 ? "block":"none";
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderDots(){
+  let html="";
+  for(let i=1;i<=total;i++){
+    html+=`<span class="dot ${i<=current?'active':''}"></span>`;
+  }
+  prog.innerHTML=html;
+}
+
+function react(e){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText=e;
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize="26px";
+  h.style.animationDuration="4s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+}
+
+function confetti(){
+  for(let i=0;i<12;i++)react("🎉");
+}
 
 function wa(){
   window.open(
-    "https://wa.me/6281297203132?text=Aku%20udah%20baca%20semuanya…%0AMakasih%20ya%20udah%20niat%20banget%20buat%20aku%20🤍"
+    "https://wa.me/6281297203132?text=Aku%20udah%20baca%20semuanya…%0AMakasih%20ya%20udah%20bikin%20aku%20ngerasa%20sepenting%20itu%20🤍%0AHati-hati%20di%20jalan%20dari%20Bekasi.%0AAku%20nunggu%20kamu%20di%20Jogja."
   );
 }
 
-function fall(){
-  for(let i=0;i<4;i++){
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerText="💗";
-    h.style.left=Math.random()*100+"vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),4000);
-  }
-}
+document.addEventListener("click",e=>{
+  if(e.target.tagName==="BUTTON")return;
+  react("💗");
+});
+
+// reflection pause
+setTimeout(()=>{
+  const btn=document.getElementById("pauseBtn");
+  if(btn){btn.disabled=false;btn.innerText="Lanjut 🤍";}
+},2000);
 </script>
 
 </body>
