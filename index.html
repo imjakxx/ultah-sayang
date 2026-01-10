@@ -57,22 +57,11 @@ body{
     transform:none;
   }
 }
-/* === STEP 2: ANIMASI URUTAN SLIDE 1 === */
-.s1-photo{
-  opacity:0;
-  animation:fadeUp .6s ease forwards;
-}
-
-.s1-name{
-  opacity:0;
-  animation:fadeUp .6s ease forwards;
-  animation-delay:.25s;
-}
-
+  /* animasi aman, ga bikin elemen ilang */
+.s1-photo,
+.s1-name,
 .s1-text{
-  opacity:0;
-  animation:fadeUp .6s ease forwards;
-  animation-delay:.45s;
+  animation:fadeUp .6s ease;
 }
 
 @keyframes fadeUp{
@@ -485,7 +474,8 @@ aku bakal sampai subuh nanti.
 <script>
 const PASSWORD="16";
 let current=1,total=7;
-
+const music = document.getElementById("music");
+music.volume = 0;
 function unlock(){
   const card = document.querySelector("#lock .card");
 
@@ -496,6 +486,7 @@ function unlock(){
       lock.style.display = "none";
       content.style.display = "flex";
       music.play();
+      fadeInMusic();
       confetti();
       renderDots();
     },300);
@@ -506,8 +497,7 @@ function unlock(){
     const msgs = [
       "ehh masa lupa sih 😭",
       "yang bener dong 😏",
-      "aku tau kamu tau jawabannya kok",
-      "ytta wkwkwk 😭"
+      "kocak salah mulu 😡"
     ];
 
     alert(msgs[Math.floor(Math.random() * msgs.length)]);
@@ -578,6 +568,33 @@ setTimeout(()=>{
   const btn=document.getElementById("pauseBtn");
   if(btn){btn.disabled=false;btn.innerText="Lanjut 🤍";}
 },2000);
+  function fadeInMusic(){
+  let vol = 0;
+  music.volume = 0;
+
+  const fade = setInterval(() => {
+    if (vol < 0.6) {
+      vol += 0.02;
+      music.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  }, 100);
+}
+
+function fadeOutMusic(){
+  let vol = music.volume;
+
+  const fade = setInterval(() => {
+    if (vol > 0) {
+      vol -= 0.02;
+      music.volume = Math.max(vol, 0);
+    } else {
+      music.pause();
+      clearInterval(fade);
+    }
+  }, 100);
+}
 </script>
 
 </body>
