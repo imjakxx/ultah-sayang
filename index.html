@@ -8,15 +8,16 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:'Patrick Hand',cursive;
-  background:
-    radial-gradient(circle at top,#2a0033,#120014 70%);
+  background:radial-gradient(circle at top,#2a0033,#120014 70%);
   min-height:100vh;
   color:#ffe6f2;
   overflow-x:hidden;
 }
+
 .screen{
   min-height:100vh;
   display:flex;
@@ -24,26 +25,39 @@ body{
   align-items:center;
   padding:20px;
 }
+
+/* CARD UTAMA */
 .card{
   position:relative;
   background:rgba(255,235,245,.08);
   backdrop-filter:blur(14px);
   border-radius:28px;
   padding:30px;
-  max-width:760px;
   width:100%;
+  max-width:420px;
   box-shadow:0 0 40px rgba(255,95,162,.25);
   animation:enter .6s ease;
 }
+
+@media (min-width:1024px){
+  .card{
+    max-width:480px;
+    box-shadow:0 0 60px rgba(255,95,162,.35);
+  }
+}
+
 @keyframes enter{
   from{opacity:0;transform:translateY(25px) scale(.95)}
   to{opacity:1;transform:none}
 }
+
 .slide{animation:slide .5s ease}
+
 @keyframes slide{
   from{opacity:0;transform:translateX(20px)}
   to{opacity:1;transform:none}
 }
+
 .photo{
   width:150px;height:150px;
   border-radius:50%;
@@ -51,16 +65,19 @@ body{
   border:5px solid rgba(255,95,162,.8);
   margin-bottom:10px;
 }
+
 .name{
   font-size:22px;
   font-weight:bold;
   margin-bottom:18px;
   animation:pulse 2s infinite;
 }
+
 @keyframes pulse{
   0%,100%{transform:scale(1)}
   50%{transform:scale(1.06)}
 }
+
 button{
   padding:12px 36px;
   border:none;
@@ -73,6 +90,7 @@ button{
   box-shadow:0 0 18px rgba(255,95,162,.6);
 }
 button:disabled{opacity:.5}
+
 input{
   padding:12px;
   border-radius:14px;
@@ -81,13 +99,16 @@ input{
   width:220px;
   text-align:center;
 }
+
 .hint, small{
   display:block;
   font-size:14px;
   opacity:.75;
   margin-top:8px;
 }
+
 .progress{margin-bottom:14px}
+
 .dot{
   display:inline-block;
   width:8px;height:8px;
@@ -96,6 +117,7 @@ input{
   margin:0 4px;
 }
 .dot.active{background:#ff5fa2}
+
 .back-btn{
   position:absolute;
   top:16px;left:18px;
@@ -104,22 +126,26 @@ input{
   cursor:pointer;
 }
 .back-btn:hover{opacity:1}
+
 .accent{
   font-size:26px;
   opacity:.8;
   margin-bottom:10px;
 }
+
 .emoline{
   border-left:3px solid #ff5fa2;
   padding-left:14px;
   margin:14px 0;
 }
+
 .react span{
   font-size:28px;
   margin:0 12px;
   cursor:pointer;
 }
 .react-info{font-size:14px;opacity:.8;margin-top:8px}
+
 .heart{
   position:fixed;
   top:-10px;
@@ -128,6 +154,7 @@ input{
 @keyframes fall{
   to{transform:translateY(110vh);opacity:0}
 }
+
 .otw{
   margin:16px 0;
   font-size:16px;
@@ -147,7 +174,7 @@ input{
     <input id="pass" placeholder="••">
     <div class="hint">petunjuk kecil: tanggal jadian kita 💗<br>(16 Agustus 2025)</div>
     <button onclick="unlock()">Masuk 💕</button>
-    <small>pelan-pelan bacanya…<br>ini aku bikinnya sambil OTW ke kamu 🤍</small>
+    <small>ini bukan buat dibaca cepat,<br>tapi buat dirasain 🤍</small>
   </div>
 </div>
 
@@ -161,7 +188,6 @@ input{
     <div class="back-btn" id="backBtn" onclick="back()" style="display:none">← balik sebentar</div>
     <div class="progress" id="prog"></div>
 
-    <!-- SLIDE 1 -->
     <div class="slide" id="s1">
       <img src="foto.jpg" class="photo">
       <div class="name">💗 Rena Nur Ichsani Pertiwi 💗</div>
@@ -171,154 +197,41 @@ input{
       <button onclick="next(1)">Pelan-pelan 💗</button>
     </div>
 
-    <!-- SLIDE 2 -->
     <div class="slide" id="s2" style="display:none">
       <div class="accent">💗</div>
       <div class="emoline">
 Makasih ya udah lahir dan jadi bagian paling spesial di hidup akuuu.
 Aku bersyukurrr bangetttt bisa nemenin kamu sampai di titik ini.
-Kehadiran kamu bikin hidup aku jauh lebih berwarna.
-
-Kadang aku mikir,
-kalau hari itu aku gak ketemu kamu,
-mungkin hidup aku gak bakal sejauh ini rasanya.
-
-Dan sampai sekarang,
-aku masih bersyukur tiap hari,
-karena semesta ngenalin aku ke kamu 🤍
       </div>
-      <small>(aku nulis ini sambil senyum sendiri)</small>
       <button onclick="next(2)">Lanjut ya…</button>
     </div>
 
-    <!-- SLIDE 3 -->
     <div class="slide" id="s3" style="display:none">
       <div class="accent">🤍</div>
       <div class="emoline">
 Aku tau aku belum sempurna,
-kadang nyebelin,
-kadang ngambek gak jelas.
-
-Dan mungkin aku masih sering egois,
-masih belum banyak ngerti kamu,
-kadang lebih mikirin perasaan aku sendiri.
-
-Aku minta maaf ya kalau selama ini
-aku sering bikin kamu kesel,
-kecewa,
-atau ngerasa sendirian.
-
-Aku lagi belajar pelan-pelan,
-bukan cuma buat jadi pacar yang lebih baik,
-tapi jadi orang yang lebih dewasa buat kamu.
-
-Semoga ke depannya aku bisa lebih ngertiin kamu,
-lebih peka,
-lebih sabar,
-dan lebih hadir di setiap hal kecil
-yang mungkin selama ini sering aku lewatin.
+tapi aku lagi belajar jadi lebih baik buat kamu.
       </div>
-      <small>(ini aku jujur, tanpa dibagus-bagusin)</small>
       <button onclick="next(3)">Masih ada 🤍</button>
     </div>
 
-    <!-- SLIDE 4 -->
     <div class="slide" id="s4" style="display:none">
       <div class="accent">💗</div>
       <div class="emoline">
-Makasih ya sayanggg udah mau ngertiin aku,
-nemenin aku dalam kondisi apa pun,
-dan sabar walaupun jarak sering ganggu kita.
-
-Aku tau kamu capek,
-aku tau kamu kadang nahan banyak hal sendiri,
-dan mungkin aku gak selalu bisa ada di samping kamu.
-
-Tapi makasih…
-karena kamu tetep bertahan,
-dan tetep milih aku sejauh ini 🤍
+Aku doain kamu bahagia,
+hari ini dan hari-hari setelahnya 🤍
       </div>
-      <small>(makasih ya udah sejauh ini)</small>
       <button onclick="next(4)">Sedikit lagi 💕</button>
     </div>
 
-    <!-- SLIDE 5 -->
     <div class="slide" id="s5" style="display:none">
-      <div class="accent">🌸</div>
-      <div class="emoline">
-Aku doain kamu selalu dikasih kebahagiaan,
-semua keinginan kamu dipermudah satu per satuuu,
-dan selalu dikasih yang terbaik sama Allah.
-
-Aku pengen kamu bahagia,
-bukan cuma hari ini,
-tapi di hari-hari biasa yang kadang sepi dan capek.
-
-Dan kalau boleh jujur,
-aku pengen jadi salah satu alasan
-kenapa kamu ngerasa aman.
-      </div>
-      <small>(aku beneran doain ini)</small>
-      <button onclick="next(5)" disabled id="pauseBtn">ambil napas dulu…</button>
-    </div>
-
-    <!-- SLIDE 6 -->
-    <div class="slide" id="s6" style="display:none">
-      <div class="accent">💗</div>
-      <div class="emoline">
-Boleh aku egois sedikit di sini?
-
-Aku tulus sayang sama kamu,
-dan aku mau terus berjuang bareng kamu,
-pelan-pelan,
-hari demi hari.
-
-Aku gak tau nanti ke depannya bakal gimana,
-tapi satu hal yang aku tau sekarang:
-aku milih kamu,
-dan aku mau terus milih kamu,
-selama aku masih dikasih kesempatan.
-
-Stay sama aku ya…
-jangan pernah bosen jadi rumah buat aku pulang 🤍
-
-No matter what happens,
-I’ll always be here to support you through everything.
-      </div>
-
-      <div class="react">
-        <span onclick="react('💗')">💗</span>
-        <span onclick="react('😭')">😭</span>
-        <span onclick="react('🥹')">🥹</span>
-      </div>
-      <div class="react-info">
-        Kalau senyum 💗 · terharu 😭 · kangen 🥹
-      </div>
-
-      <button onclick="next(6)">Baca yang terakhir</button>
-    </div>
-
-    <!-- SLIDE 7 -->
-    <div class="slide" id="s7" style="display:none">
       <div class="accent">🛤️</div>
       <div class="emoline">
-Sekarang mungkin kamu lagi baca ini sendirian,
-di layar kecil,
-dengan hati yang lagi campur aduk.
-
-Dan di waktu yang sama,
-aku lagi di perjalanan,
+Aku lagi di perjalanan,
 pelan-pelan,
 menuju kamu.
-
-Aku berangkat jam 8 malam,
-dan kalau semua lancar,
-aku bakal sampai subuh nanti.
       </div>
-
-      <div class="otw">Bekasi ━━━━━━━━▶ Jogja</div>
-      <p><b>Tunggu aku sampai ya, sayang 🤍</b></p>
-
+      <div class="otw">Bekasi ━━━━━▶ Jogja</div>
       <button onclick="wa()">Balas Aku 💬</button>
     </div>
 
@@ -327,16 +240,15 @@ aku bakal sampai subuh nanti.
 
 <script>
 const PASSWORD="16";
-let current=1,total=7;
+let current=1,total=5;
 
 function unlock(){
   if(pass.value===PASSWORD){
     lock.style.display="none";
     content.style.display="flex";
     music.play();
-    confetti();
     renderDots();
-  } else alert("Salahhh 😝");
+  }else alert("Salahhh 😝");
 }
 
 function next(n){
@@ -369,37 +281,11 @@ function renderDots(){
   prog.innerHTML=html;
 }
 
-function react(e){
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerText=e;
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize="26px";
-  h.style.animationDuration="4s";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),4000);
-}
-
-function confetti(){
-  for(let i=0;i<12;i++)react("🎉");
-}
-
 function wa(){
   window.open(
-    "https://wa.me/6281297203132?text=Aku%20udah%20baca%20semuanya…%0AMakasih%20ya%20udah%20bikin%20aku%20ngerasa%20sepenting%20itu%20🤍%0AHati-hati%20di%20jalan%20dari%20Bekasi.%0AAku%20nunggu%20kamu%20di%20Jogja."
+    "https://wa.me/6281297203132?text=Aku%20udah%20baca%20semuanya…%20🤍"
   );
 }
-
-document.addEventListener("click",e=>{
-  if(e.target.tagName==="BUTTON")return;
-  react("💗");
-});
-
-// reflection pause
-setTimeout(()=>{
-  const btn=document.getElementById("pauseBtn");
-  if(btn){btn.disabled=false;btn.innerText="Lanjut 🤍";}
-},2000);
 </script>
 
 </body>
