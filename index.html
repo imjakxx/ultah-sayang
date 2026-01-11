@@ -167,7 +167,126 @@ input{
   animation:fall linear infinite;
 }
 @keyframes fall{
-  to{transform:translateY(110vh);opacity:0}
+  to{transform:translateY(110vh);op/* =========================
+   EMOJI ANIMATIONS (SAFE)
+   FINAL — FIX SESUAI INDEX
+   ========================= */
+
+/* =========================
+   SLIDE 1 — 💗 (PEMBUKA)
+   Hangat, hidup
+   ========================= */
+.emoji-open{
+  display:inline-block;
+  animation: openPulse 2.6s ease-in-out infinite;
+}
+@keyframes openPulse{
+  0%,100%{
+    transform: scale(1);
+    text-shadow: 0 0 8px rgba(255,95,162,.5);
+  }
+  50%{
+    transform: scale(1.08);
+    text-shadow: 0 0 18px rgba(255,95,162,.9);
+  }
+}
+
+/* =========================
+   SLIDE 2 — 💌 (ROMANTIS)
+   ========================= */
+.emoji-float{
+  display:inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-8px); }
+}
+
+/* =========================
+   SLIDE 3 — ✨ (APRESIASI)
+   ========================= */
+.emoji-glow{
+  display:inline-block;
+  animation: glow 2.5s ease-in-out infinite;
+}
+@keyframes glow{
+  0%,100%{
+    text-shadow: 0 0 6px rgba(255,255,255,.4);
+  }
+  50%{
+    text-shadow: 0 0 14px rgba(255,255,255,.9);
+  }
+}
+
+/* =========================
+   SLIDE 4 — 🥹 (EMOSIONAL)
+   ========================= */
+.emoji-tear{
+  display:inline-block;
+  animation: tearPulse 2.4s ease-in-out infinite;
+}
+@keyframes tearPulse{
+  0%,100%{
+    transform: scale(1);
+    opacity: .85;
+  }
+  50%{
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   SLIDE 5 — 🤍 (KOMITMEN)
+   ========================= */
+.emoji-heartbeat{
+  display:inline-block;
+  animation: slideHeartbeat 2.2s ease-in-out infinite;
+}
+@keyframes slideHeartbeat{
+  0%,100%{ transform: scale(1); }
+  50%{ transform: scale(1.15); }
+}
+
+/* =========================
+   SLIDE SEBELUM TERAKHIR — 🌙
+   TENANG / TRANSISI
+   ========================= */
+.emoji-end{
+  display:inline-block;
+  animation: endFade 3s ease-in-out infinite;
+}
+@keyframes endFade{
+  0%,100%{
+    opacity: .6;
+    transform: scale(1);
+  }
+  50%{
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+/* =========================
+   SLIDE TERAKHIR — 🛤️
+   PERJALANAN / OTW
+   ========================= */
+.road{
+  display:inline-block;
+  animation: roadMove 3.2s ease-in-out infinite;
+}
+@keyframes roadMove{
+  0%,100%{
+    transform: translateX(0);
+    opacity: .9;
+  }
+  50%{
+    transform: translateX(6px);
+    opacity: 1;
+  }
+  }
+  acity:0}
 }
 .otw{
   margin:16px 0;
@@ -175,59 +294,7 @@ input{
   letter-spacing:2px;
 }
   /* =========================
-   EMOJI ANIMATIONS (SAFE)
-   ========================= */
-
-/* 💗 EMOJI HEART — detak lembut (AMAN) */
-.emoji-heart{
-  display:inline-block;
-  animation:emojiHeartBeat 1.8s ease-in-out infinite;
-}
-
-@keyframes emojiHeartBeat{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.18)}
-}
-
-/* 🤍 CALM — melayang tenang */
-.calm{
-  display:inline-block;
-  animation:calmFloat 3s ease-in-out infinite;
-}
-@keyframes calmFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
-}
-
-/* 🌸 HOPE — glow hangat */
-.hope{
-  display:inline-block;
-  animation:hopeGlow 2.6s ease-in-out infinite;
-}
-@keyframes hopeGlow{
-  0%,100%{
-    text-shadow:0 0 8px rgba(255,95,162,.4);
-  }
-  50%{
-    text-shadow:0 0 18px rgba(255,95,162,.8);
-  }
-}
-
-/* 🛤️ ROAD — perjalanan */
-.road{
-  display:inline-block;
-  animation:roadMove 3.2s ease-in-out infinite;
-}
-@keyframes roadMove{
-  0%,100%{
-    transform:translateX(0);
-    opacity:.9;
-  }
-  50%{
-    transform:translateX(6px);
-    opacity:1;
-  }
-}/* === LOGIN MICRO ANIMATION === */
+  /* === LOGIN MICRO ANIMATION === */
 .card.success{
   animation:loginSuccess .4s ease;
 }
@@ -595,78 +662,6 @@ function fadeOutMusic(){
     }
   }, 100);
 }
-/* =========================
-   EMOJI ANIMATION PER SLIDE
-   ========================= */
-
-/* SLIDE 2 — 💌 (romantis, lembut) */
-.emoji-float{
-  animation: float 3s ease-in-out infinite;
-}
-@keyframes float{
-  0%,100%{
-    transform: translateY(0);
-  }
-  50%{
-    transform: translateY(-8px);
-  }
-}
-
-/* SLIDE 3 — ✨ (apresiasi, glow halus) */
-.emoji-glow{
-  animation: glow 2.5s ease-in-out infinite;
-}
-@keyframes glow{
-  0%,100%{
-    text-shadow: 0 0 6px rgba(255,255,255,.4);
-  }
-  50%{
-    text-shadow: 0 0 14px rgba(255,255,255,.9);
-  }
-}
-
-/* SLIDE 4 — 🥹 (emosional, terharu) */
-.emoji-tear{
-  animation: tearPulse 2.4s ease-in-out infinite;
-}
-@keyframes tearPulse{
-  0%,100%{
-    transform: scale(1);
-    opacity: .85;
-  }
-  50%{
-    transform: scale(1.12);
-    opacity: 1;
-  }
-}
-
-/* SLIDE 5 — 🤍 (serius, komitmen) */
-.emoji-heartbeat{
-  animation: heartbeat 2.2s ease-in-out infinite;
-}
-@keyframes heartbeat{
-  0%,100%{
-    transform: scale(1);
-  }
-  50%{
-    transform: scale(1.15);
-  }
-}
-
-/* SLIDE TERAKHIR — 🌙 (penutup, tenang) */
-.emoji-end{
-  animation: endFade 3s ease-in-out infinite;
-}
-@keyframes endFade{
-  0%,100%{
-    opacity: .6;
-    transform: scale(1);
-  }
-  50%{
-    opacity: 1;
-    transform: scale(1.08);
-  }
-    }
 </script>
 
 </body>
