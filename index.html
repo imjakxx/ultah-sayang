@@ -7,20 +7,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 body{
-  margin:0;
-  font-family:'Patrick Hand',cursive;
+  margin: 0;
+  font-family: 'Patrick Hand', cursive;
   background:
-    radial-gradient(circle at top,#2a0033,#120014 70%);
-  min-height:100vh;
-  color:#ffe6f2;
-  overflow-x:hidden;
+    radial-gradient(circle at top, #2a0033, #120014 70%);
+  min-height: 100dvh;
+  color: #ffe6f2;
+  overflow-x: hidden;
+
+  /* SAFE AREA BOTTOM (ANDROID + iOS) */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 /* === ANDROID PERFORMANCE FIX === */
 .heart, .emoji {
   will-change: transform, opacity;
   transform: translateZ(0);
+}
+/* === IMPROVE TEXT READABILITY (LAPTOP) === */
+.emoline {
+  max-width: 420px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+/* === IMPROVE TAP & CLICK (ANDROID + LAPTOP) === */
+button,
+.react span {
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+  touch-action: manipulation;
 }
 .screen{
   min-height:100vh;
@@ -681,7 +700,8 @@ function confetti(){
 }
 
 function wa(){
-  fadeOutMusic();
+  stopLoveRain();   // hentikan animasi
+  fadeOutMusic();   // fade audio
 
   const text = `makacii jakiii gantenggg, akuuu cayangg cekalii camaa jakiii,
 mwahhh mwahh mwahhhh maw cium jaki sampe pingsan 💋🫰😭`;
