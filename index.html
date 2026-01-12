@@ -556,9 +556,9 @@ jangan pernah bosen jadi rumah buat aku pulang 🏡🤍
       </div>
 
       <div class="react">
-        <span onclick="react('💗')">💗</span>
-        <span onclick="react('😭')">😭</span>
-        <span onclick="react('🥹')">🥹</span>
+  <span onclick="startEmojiRain('💗')">💗</span>
+  <span onclick="startEmojiRain('😭')">😭</span>
+  <span onclick="startEmojiRain('🥹')">🥹</span>
       </div>
       <div class="react-info">
         Kalau senyum 💗 · terharu 😭 · kangen 🥹
@@ -593,16 +593,30 @@ kamu🫵🫰
 </div>
 
 <script>
-const PASSWORD="16";
-let current=1,total=7;
+/* ===============================
+   GLOBAL STATE
+   =============================== */
+const PASSWORD = "16";
+let current = 1, total = 7;
+
+let loveRainInterval = null;
+let emojiRainInterval = null;
+
 const music = document.getElementById("music");
 music.volume = 0;
-// === ANDROID AUDIO FAILSAFE ===
+
+/* ===============================
+   ANDROID AUDIO FAILSAFE
+   =============================== */
 document.addEventListener("click", () => {
   if (music && music.paused) {
     music.play().catch(() => {});
   }
 }, { once: true });
+
+/* ===============================
+   UNLOCK
+   =============================== */
 function unlock(){
   const card = document.querySelector("#lock .card");
 
@@ -610,25 +624,21 @@ function unlock(){
     card.classList.add("success");
 
     setTimeout(()=>{
-  lock.style.display = "none";
-  content.style.display = "flex";
-  music.play();
-  fadeInMusic();
-  confetti();
-  renderDots();
+      lock.style.display = "none";
+      content.style.display = "flex";
+      music.play();
+      fadeInMusic();
+      renderDots();
 
-  /* === EFFECT KHUSUS SLIDE 1 === */
-  confettiBurst();
-
-  spawnFloatingHeart();
-  setTimeout(spawnFloatingHeart, 800);
-  setTimeout(spawnFloatingHeart, 1600);
-
-},300);
+      // effect slide 1
+      confettiBurst();
+      spawnFloatingHeart();
+      setTimeout(spawnFloatingHeart, 800);
+      setTimeout(spawnFloatingHeart, 1600);
+    },300);
 
   } else {
     pass.classList.add("error");
-
     const msgs = [
       "ehh masa lupa sih 😭",
       "yang bener dong 😏",
@@ -638,40 +648,37 @@ function unlock(){
       "tanya jaki sana deh!!!",
       "tanggal jadian kita anjir😤"
     ];
-
     alert(msgs[Math.floor(Math.random() * msgs.length)]);
-
-    setTimeout(()=>{
-      pass.classList.remove("error");
-    },300);
+    setTimeout(()=>pass.classList.remove("error"),300);
   }
 }
+
+/* ===============================
+   SLIDE NAVIGATION
+   =============================== */
 function next(n){
+  stopAllRain();
+
   document.getElementById("s"+n).style.display="none";
   document.getElementById("s"+(n+1)).style.display="block";
-  current=n+1;
+  current = n+1;
   updateUI();
 
-  /* EFFECT KHUSUS SLIDE 1 */
-  if (current === 1) {
+  if(current === 1){
     confettiBurst();
-
     spawnFloatingHeart();
     setTimeout(spawnFloatingHeart, 800);
     setTimeout(spawnFloatingHeart, 1600);
   }
 
-  /* LOVE RAIN CONTROL */
-  if (current === 2) {
-    startLoveRain();   // mulai hujan love
-  }
-
-  if (current === 7) {
-    stopLoveRain();    // stop di slide terakhir
+  if(current === 2){
+    startLoveRain();
   }
 }
+
 function back(){
-  if(current>1){
+  if(current > 1){
+    stopAllRain();
     document.getElementById("s"+current).style.display="none";
     document.getElementById("s"+(current-1)).style.display="block";
     current--;
@@ -681,7 +688,7 @@ function back(){
 
 function updateUI(){
   renderDots();
-  backBtn.style.display = current>1 ? "block":"none";
+  backBtn.style.display = current > 1 ? "block" : "none";
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -693,24 +700,114 @@ function renderDots(){
   prog.innerHTML=html;
 }
 
+/* ===============================
+   HEART / EMOJI SPAWN
+   =============================== */
 function react(e){
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerText=e;
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize="26px";
-  h.style.animationDuration="4s";
+  if(document.querySelectorAll(".heart").length > 25) return;
+
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerText = e;
+  h.style.left = Math.random()*100+"vw";
+  h.style.fontSize = "26px";
+  h.style.animationDuration = "4s";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),4000);
 }
 
-function confetti(){
-  for(let i=0;i<12;i++)react("🎉");
+/* ===============================
+   LOVE RAIN (AUTO)
+   =============================== */
+function startLoveRain(){
+  if(loveRainInterval) return;
+  loveRainInterval = setInterval(()=>{
+    react("💗");
+  },900);
 }
 
+function stopLoveRain(){
+  clearInterval(loveRainInterval);
+  loveRainInterval = null;
+}
+
+/* ===============================
+   EMOJI RAIN (USER CLICK)
+   =============================== */
+function startEmojiRain(emoji){
+  stopAllRain(); // matiin semua dulu
+  emojiRainInterval = setInterval(()=>{
+    react(emoji);
+  },700);
+}
+
+function stopEmojiRain(){
+  clearInterval(emojiRainInterval);
+  emojiRainInterval = null;
+}
+
+function stopAllRain(){
+  stopLoveRain();
+  stopEmojiRain();
+}
+
+/* ===============================
+   EFFECT SLIDE 1
+   =============================== */
+function confettiBurst(){
+  for(let i=0;i<12;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.innerText="🎉";
+    c.style.setProperty("--x",Math.random());
+    c.style.setProperty("--y",Math.random());
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1800);
+  }
+}
+
+function spawnFloatingHeart(){
+  const h=document.createElement("div");
+  h.className="float-heart";
+  h.innerText="💗";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
+
+/* ===============================
+   MUSIC
+   =============================== */
+function fadeInMusic(){
+  let vol=0;
+  music.volume=0;
+  const fade=setInterval(()=>{
+    if(vol<0.6){
+      vol+=0.02;
+      music.volume=vol;
+    } else clearInterval(fade);
+  },100);
+}
+
+function fadeOutMusic(){
+  let vol=music.volume;
+  const fade=setInterval(()=>{
+    if(vol>0){
+      vol-=0.02;
+      music.volume=Math.max(vol,0);
+    } else {
+      music.pause();
+      clearInterval(fade);
+    }
+  },100);
+}
+
+/* ===============================
+   WHATSAPP
+   =============================== */
 function wa(){
-  stopLoveRain();   // hentikan animasi
-  fadeOutMusic();   // fade audio
+  stopAllRain();
+  fadeOutMusic();
 
   const text = `makacii jakiii gantenggg, akuuu cayangg cekalii camaa jakiii,
 mwahhh mwahh mwahhhh maw cium jaki sampe pingsan 💋🫰😭`;
@@ -722,88 +819,6 @@ mwahhh mwahh mwahhhh maw cium jaki sampe pingsan 💋🫰😭`;
     );
   },1200);
 }
-
-document.addEventListener("click", e => {
-  if(!e.target.closest(".react")) return;
-  react("💗");
-});
-
-// reflection pause
-setTimeout(()=>{
-  const btn=document.getElementById("pauseBtn");
-  if(btn){btn.disabled=false;btn.innerText="Lanjut 🤍";}
-},2000);
-  function fadeInMusic(){
-  let vol = 0;
-  music.volume = 0;
-
-  const fade = setInterval(() => {
-    if (vol < 0.6) {
-      vol += 0.02;
-      music.volume = vol;
-    } else {
-      clearInterval(fade);
-    }
-  }, 100);
-}
-
-function fadeOutMusic(){
-  let vol = music.volume;
-
-  const fade = setInterval(() => {
-    if (vol > 0) {
-      vol -= 0.02;
-      music.volume = Math.max(vol, 0);
-    } else {
-      music.pause();
-      clearInterval(fade);
-    }
-  }, 100);
-}
-  /* ===============================
-   EFFECT FUNCTION – SLIDE 1
-   =============================== */
-
-// Confetti POP sekali
-function confettiBurst() {
-  for (let i = 0; i < 12; i++) {
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.innerText = "🎉";
-    c.style.setProperty("--x", Math.random());
-    c.style.setProperty("--y", Math.random());
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 1800);
-  }
-}
-
-// Floating heart pelan
-function spawnFloatingHeart() {
-  const h = document.createElement("div");
-  h.className = "float-heart";
-  h.innerText = "💗";
-  h.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 6000);
-      }
-  /* ===============================
-   LOVE RAIN (SLIDE 2+)
-   =============================== */
-let loveRainInterval = null;
-
-function startLoveRain(){
-  if(loveRainInterval) return;
-
-  loveRainInterval = setInterval(()=>{
-    react("💗");
-  }, 900); // estetik, agak sering tapi aman
-}
-
-function stopLoveRain(){
-  clearInterval(loveRainInterval);
-  loveRainInterval = null;
-}
 </script>
-
 </body>
 </html>
