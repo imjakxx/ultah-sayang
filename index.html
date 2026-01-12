@@ -274,20 +274,31 @@ input{
   80%{transform:translateX(4px)}
   100%{transform:translateX(0)}
 }
-
-.confetti-big{
-  position:fixed;
-  top:50%;
-  left:50%;
-  font-size:42px;
-  transform:translate(-50%,-50%);
-  animation:confettiBig 1.4s ease-out forwards;
-  z-index:999;
-  pointer-events:none;
+/* CONFETTI GEDE TENGAH — UPGRADED */
+.confetti-big {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 64px; /* 🔥 DARI 42px → 64px */
+  transform: translate(-50%, -50%);
+  animation: confettiBig 1.6s ease-out forwards;
+  z-index: 999;
+  pointer-events: none;
 }
-@keyframes confettiBig{
-  0%{transform:translate(-50%,-50%) scale(.5);opacity:1}
-  100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}
+
+@keyframes confettiBig {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(2.2); /* 🔥 LEDAKAN LEBIH GEDE */
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.6);
+    opacity: 0;
+  }
 }
 
 /* ===============================
@@ -317,6 +328,73 @@ input.error{animation:shake .3s ease}
     max-width:480px;
     box-shadow:0 0 60px rgba(255,95,162,.35);
   }
+}
+/* ===============================
+   EMOJI ANIMATIONS (RESTORED)
+   =============================== */
+
+.emoji-open{
+  display:inline-block;
+  animation: emojiOpen 2.6s ease-in-out infinite;
+}
+@keyframes emojiOpen{
+  0%,100%{transform:scale(1);opacity:.9}
+  50%{transform:scale(1.15);opacity:1}
+}
+
+.emoji-float{
+  display:inline-block;
+  animation: emojiFloat 3s ease-in-out infinite;
+}
+@keyframes emojiFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+.emoji-glow{
+  display:inline-block;
+  animation: emojiGlow 2.4s ease-in-out infinite;
+}
+@keyframes emojiGlow{
+  0%,100%{text-shadow:0 0 6px rgba(255,255,255,.4)}
+  50%{text-shadow:0 0 16px rgba(255,255,255,1)}
+}
+
+.emoji-tear{
+  display:inline-block;
+  animation: emojiTear 2.2s ease-in-out infinite;
+}
+@keyframes emojiTear{
+  0%,100%{transform:scale(1);opacity:.85}
+  50%{transform:scale(1.15);opacity:1}
+}
+
+.emoji-heartbeat{
+  display:inline-block;
+  animation: emojiBeat 2s ease-in-out infinite;
+}
+@keyframes emojiBeat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.18)}
+}
+
+.emoji-end{
+  display:inline-block;
+  animation: emojiEnd 3s ease-in-out infinite;
+}
+@keyframes emojiEnd{
+  0%,100%{opacity:.6}
+  50%{opacity:1}
+}
+/* ===============================
+   OTW (BEKASI → JOGJA)
+   =============================== */
+.otw{
+  margin-top:16px;
+  font-size:14px;
+  letter-spacing:.6px;
+  opacity:.8;
+  text-align:center;
 }
 </style>
 
