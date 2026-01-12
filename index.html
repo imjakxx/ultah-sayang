@@ -141,7 +141,7 @@ h1, h2, .name {
 }
 
 .name-heart{
-  font-size:22px;
+  font-size:26px;
   line-height:1;
 }
 
@@ -273,6 +273,17 @@ input{
   60%{transform:translateX(-4px)}
   80%{transform:translateX(4px)}
   100%{transform:translateX(0)}
+}
+/* SHAKE KECIL (BUILD UP) */
+.shake-soft {
+  animation: shakeSoft .25s ease-in-out;
+}
+@keyframes shakeSoft {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-2px); }
+  50%  { transform: translateX(2px); }
+  75%  { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
 }
 /* CONFETTI GEDE TENGAH — SLOW & DRAMATIC */
 .confetti-big {
@@ -807,6 +818,16 @@ function confettiBurst(){
 
     setTimeout(() => c.remove(), 1800);
   }
+function confettiBurstWide(){
+  for (let i = 0; i < 18; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.innerText = "🎉";
+    c.style.setProperty("--x", Math.random() * 2 - 1); // lebih luas
+    c.style.setProperty("--y", Math.random() * 2 - 1);
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 2000);
+  }
 }
 
 function spawnFloatingHeart(){
@@ -823,22 +844,30 @@ function bigConfettiExplosion(){
   const card = document.querySelector("#s1");
   if (!card) return;
 
-  card.classList.add("shake-center");
+  /* 1️⃣ SHAKE KECIL (BUILD UP) */
+  card.classList.add("shake-soft");
 
   setTimeout(() => {
-    card.classList.remove("shake-center");
+    card.classList.remove("shake-soft");
 
-    for (let i = 0; i < 10; i++) {
+    /* 2️⃣ SHAKE GEDE + CONFETTI CENTER (Klimaks) */
+    card.classList.add("shake-center");
+
+    for (let i = 0; i < 12; i++) {
       const c = document.createElement("div");
       c.className = "confetti-big";
       c.innerText = "🎉";
       document.body.appendChild(c);
-
-      setTimeout(() => c.remove(), 1400);
+      setTimeout(() => c.remove(), 2600);
     }
 
-    confettiBurst();
-  }, 400);
+    /* 3️⃣ CONFETTI KECIL PECAH LEBIH LUAS */
+    setTimeout(() => {
+      card.classList.remove("shake-center");
+      confettiBurstWide();
+    }, 500);
+
+  }, 250); // durasi shake kecil
 }
 
 /* ===============================
