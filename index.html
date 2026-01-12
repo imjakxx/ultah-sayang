@@ -4,34 +4,38 @@
 <meta charset="UTF-8">
 <title>For You 💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
 *, *::before, *::after {
   box-sizing: border-box;
 }
-body{
+html, body {
+  overscroll-behavior: none;
+}
+body {
   margin: 0;
-  font-family: 'Patrick Hand', cursive;
-  background:
-    radial-gradient(circle at top, #2a0033, #120014 70%);
+  font-family: 'Patrick Hand', 'Comic Sans MS', 'Segoe UI', cursive;
+  background: radial-gradient(circle at top, #2a0033, #120014 70%);
+  min-height: 100vh;
   min-height: 100dvh;
   color: #ffe6f2;
   overflow-x: hidden;
 
-  /* SAFE AREA BOTTOM (ANDROID + iOS) */
+  /* SAFE AREA (ANDROID + iOS) */
   padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-/* === ANDROID PERFORMANCE FIX === */
-.heart, .emoji {
-  will-change: transform, opacity;
-  transform: translateZ(0);
+  /* ANTI KESELEK SELECT */
+  user-select: none;
+  -webkit-user-select: none;
 }
 /* === IMPROVE TEXT READABILITY (LAPTOP) === */
-.emoline {
-  max-width: 420px;
-  margin: 0 auto;
-  line-height: 1.55;
+.emoline{
+  border-left:3px solid #ff5fa2;
+  padding-left:14px;
+  margin:14px 0;
+
+  user-select: text;
+  -webkit-user-select: text;
 }
 /* === IMPROVE TAP & CLICK (ANDROID + LAPTOP) === */
 button,
