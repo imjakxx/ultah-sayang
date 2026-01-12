@@ -10,6 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
+/* ===============================
+   GLOBAL RESET & SAFETY
+   =============================== */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -28,7 +31,10 @@ body {
   user-select: none;
   -webkit-user-select: none;
 }
-/* === IMPROVE TEXT READABILITY (LAPTOP) === */
+
+/* ===============================
+   TEXT & INTERACTION
+   =============================== */
 .emoline {
   border-left: 3px solid #ff5fa2;
   padding-left: 14px;
@@ -36,7 +42,7 @@ body {
   line-height: 1.7;
   font-size: 15.5px;
 }
-/* === IMPROVE TAP & CLICK (ANDROID + LAPTOP) === */
+
 button,
 .react span {
   min-width: 44px;
@@ -44,6 +50,10 @@ button,
   cursor: pointer;
   touch-action: manipulation;
 }
+
+/* ===============================
+   LAYOUT
+   =============================== */
 .screen{
   min-height:100vh;
   display:flex;
@@ -51,6 +61,7 @@ button,
   align-items:center;
   padding:20px;
 }
+
 .card{
   position:relative;
   background:rgba(255,235,245,.08);
@@ -62,49 +73,44 @@ button,
   box-shadow:0 0 40px rgba(255,95,162,.25);
   animation:enter .6s ease;
 }
-h1, h2, .name {
-  font-family: 'Playfair Display', serif;
-  letter-spacing: 0.3px;
-}
+
 @keyframes enter{
   from{opacity:0;transform:translateY(25px) scale(.95)}
   to{opacity:1;transform:none}
 }
+
+h1, h2, .name {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.3px;
+}
+
+/* ===============================
+   SLIDE ANIMATION
+   =============================== */
 .slide{
   animation:slide .5s ease;
 }
-
 .slide.center{
   text-align:center;
 }
-
 @keyframes slide{
-  from{
-    opacity:0;
-    transform:translateX(20px);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
+  from{opacity:0;transform:translateX(20px)}
+  to{opacity:1;transform:none}
 }
-  /* animasi aman, ga bikin elemen ilang */
+
+/* ===============================
+   SLIDE 1 ELEMENTS
+   =============================== */
 .s1-photo,
 .s1-name,
 .s1-text{
   animation:fadeUp .6s ease;
 }
-
 @keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(16px);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:none}
 }
+
 .photo{
   width:150px;
   height:150px;
@@ -118,21 +124,35 @@ h1, h2, .name {
   animation:photoBreath 4s ease-in-out infinite;
   box-shadow:0 0 18px rgba(255,95,162,.45);
 }
-
 @keyframes photoBreath{
   0%,100%{transform:scale(1)}
   50%{transform:scale(1.04)}
 }
+
 .name{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
   font-size:22px;
   font-weight:bold;
   margin-bottom:18px;
   animation:pulse 2s infinite;
 }
+
+.name-heart{
+  font-size:22px;
+  line-height:1;
+}
+
 @keyframes pulse{
   0%,100%{transform:scale(1)}
   50%{transform:scale(1.06)}
 }
+
+/* ===============================
+   BUTTON & INPUT
+   =============================== */
 button{
   padding:12px 36px;
   border:none;
@@ -141,10 +161,10 @@ button{
   background:#ff5fa2;
   color:#120014;
   margin-top:22px;
-  cursor:pointer;
   box-shadow:0 0 18px rgba(255,95,162,.6);
 }
 button:disabled{opacity:.5}
+
 input{
   padding:12px;
   border-radius:14px;
@@ -153,12 +173,17 @@ input{
   width:220px;
   text-align:center;
 }
+
 .hint, small{
   display:block;
   font-size:14px;
   opacity:.75;
   margin-top:8px;
 }
+
+/* ===============================
+   PROGRESS & NAV
+   =============================== */
 .progress{margin-bottom:14px}
 .dot{
   display:inline-block;
@@ -168,6 +193,7 @@ input{
   margin:0 4px;
 }
 .dot.active{background:#ff5fa2}
+
 .back-btn{
   position:absolute;
   top:16px;left:18px;
@@ -176,213 +202,116 @@ input{
   cursor:pointer;
 }
 .back-btn:hover{opacity:1}
-.accent{
-  font-size:26px;
-  opacity:.8;
-  margin-bottom:10px;
-}
-.emoline{
-  border-left:3px solid #ff5fa2;
-  padding-left:14px;
-  margin:14px 0;
-}
+
+/* ===============================
+   HEART / EMOJI RAIN
+   =============================== */
 .react span{
   font-size:28px;
   margin:0 12px;
-  cursor:pointer;
 }
 .react-info{font-size:14px;opacity:.8;margin-top:8px}
+
 .heart{
   position:fixed;
   top:-10px;
   animation:fall linear infinite;
 }
 @keyframes fall{
-  to{
-    transform:translateY(110vh);
-    opacity:0;
-  }
-}
-/* =========================
-   EMOJI ANIMATIONS (SAFE)
-   FINAL — STABLE & CLEAN
-   ========================= */
-
-/* ===== SLIDE 1 — PEMBUKA 💗 ===== */
-.emoji-open{
-  display:inline-block;
-  animation: openPulse 2.6s ease-in-out infinite;
-}
-@keyframes openPulse{
-  0%,100%{
-    transform: scale(1);
-    text-shadow: 0 0 8px rgba(255,95,162,.5);
-  }
-  50%{
-    transform: scale(1.08);
-    text-shadow: 0 0 18px rgba(255,95,162,.9);
-  }
+  to{transform:translateY(110vh);opacity:0}
 }
 
-/* ===== SLIDE 2 — ROMANTIS 💌 ===== */
-.emoji-float{
-  display:inline-block;
-  animation: float 3s ease-in-out infinite;
-}
-@keyframes float{
-  0%,100%{ transform: translateY(0); }
-  50%{ transform: translateY(-8px); }
-}
-
-/* ===== SLIDE 3 — APRESIASI ✨ ===== */
-.emoji-glow{
-  display:inline-block;
-  animation: glow 2.5s ease-in-out infinite;
-}
-@keyframes glow{
-  0%,100%{
-    text-shadow: 0 0 6px rgba(255,255,255,.4);
-  }
-  50%{
-    text-shadow: 0 0 14px rgba(255,255,255,.9);
-  }
-}
-
-/* ===== SLIDE 4 — EMOSIONAL 🥹 ===== */
-.emoji-tear{
-  display:inline-block;
-  animation: tearPulse 2.4s ease-in-out infinite;
-}
-@keyframes tearPulse{
-  0%,100%{
-    transform: scale(1);
-    opacity: .85;
-  }
-  50%{
-    transform: scale(1.12);
-    opacity: 1;
-  }
-}
-
-/* ===== SLIDE 5 — KOMITMEN 🤍 ===== */
-.emoji-heartbeat{
-  display:inline-block;
-  animation: slideHeartbeat 2.2s ease-in-out infinite;
-}
-@keyframes slideHeartbeat{
-  0%,100%{ transform: scale(1); }
-  50%{ transform: scale(1.15); }
-}
-
-/* ===== SLIDE SEBELUM TERAKHIR — TENANG 🌙 ===== */
-.emoji-end{
-  display:inline-block;
-  animation: endFade 3s ease-in-out infinite;
-}
-@keyframes endFade{
-  0%,100%{
-    opacity: .6;
-    transform: scale(1);
-  }
-  50%{
-    opacity: 1;
-    transform: scale(1.08);
-  }
-}
-
-/* ===== SLIDE TERAKHIR — PERJALANAN 🛤️ ===== */
-.road{
-  display:inline-block;
-  animation: roadMove 3.2s ease-in-out infinite;
-}
-@keyframes roadMove{
-  0%,100%{
-    transform: translateX(0);
-    opacity: .9;
-  }
-  50%{
-    transform: translateX(6px);
-    opacity: 1;
-  }
-}
-  /* ===============================
-   EFFECT TAMBAHAN – SLIDE 1 ONLY
+/* ===============================
+   FLOATING HEART
    =============================== */
-
-/* FLOATING HEART (PELAAAN, HALUS) */
-.float-heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 18px;
-  opacity: 0.6;
-  animation: floatUp 6s linear forwards;
-  pointer-events: none;
-  z-index: 1;
+.float-heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:18px;
+  opacity:.6;
+  animation:floatUp 6s linear forwards;
+  pointer-events:none;
+  z-index:1;
+}
+@keyframes floatUp{
+  from{transform:translateY(0) scale(1);opacity:0}
+  10%{opacity:.6}
+  to{transform:translateY(-120vh) scale(1.4);opacity:0}
 }
 
-@keyframes floatUp {
-  from {
-    transform: translateY(0) scale(1);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.6;
-  }
-  to {
-    transform: translateY(-120vh) scale(1.4);
-    opacity: 0;
-  }
+/* ===============================
+   CONFETTI
+   =============================== */
+.confetti{
+  position:fixed;
+  top:50%;
+  left:50%;
+  font-size:20px;
+  animation:confettiPop 1.8s ease-out forwards;
+  pointer-events:none;
+  z-index:2;
 }
-
-/* CONFETTI BURST (SEKALI POP) */
-.confetti {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  font-size: 20px;
-  animation: confettiPop 1.8s ease-out forwards;
-  pointer-events: none;
-  z-index: 2;
-}
-
-@keyframes confettiPop {
-  from {
-    transform: translate(0, 0) scale(0.6);
-    opacity: 1;
-  }
-  to {
-    transform: translate(
+@keyframes confettiPop{
+  from{transform:translate(0,0) scale(.6);opacity:1}
+  to{
+    transform:translate(
       calc(-50px + 100px * var(--x)),
       calc(-50px + 100px * var(--y))
     ) scale(1.2);
-    opacity: 0;
+    opacity:0;
   }
 }
-  /* =========================
-   END MICRO ANIMATION
-   ========================= */
-.card.success{
-  animation:loginSuccess .4s ease;
+
+/* CONFETTI GEDE */
+.shake-center{
+  animation:shakeCenter .4s ease;
+}
+@keyframes shakeCenter{
+  0%{transform:translateX(0)}
+  20%{transform:translateX(-6px)}
+  40%{transform:translateX(6px)}
+  60%{transform:translateX(-4px)}
+  80%{transform:translateX(4px)}
+  100%{transform:translateX(0)}
 }
 
+.confetti-big{
+  position:fixed;
+  top:50%;
+  left:50%;
+  font-size:42px;
+  transform:translate(-50%,-50%);
+  animation:confettiBig 1.4s ease-out forwards;
+  z-index:999;
+  pointer-events:none;
+}
+@keyframes confettiBig{
+  0%{transform:translate(-50%,-50%) scale(.5);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}
+}
+
+/* ===============================
+   LOGIN FEEDBACK
+   =============================== */
+.card.success{animation:loginSuccess .4s ease}
 @keyframes loginSuccess{
   0%{transform:scale(.97)}
   50%{transform:scale(1.02)}
   100%{transform:scale(1)}
 }
 
-input.error{
-  animation:shake .3s ease;
-}
-
+input.error{animation:shake .3s ease}
 @keyframes shake{
   0%{transform:translateX(0)}
   25%{transform:translateX(-5px)}
   50%{transform:translateX(5px)}
   75%{transform:translateX(-3px)}
   100%{transform:translateX(0)}
-  }
+}
 
+/* ===============================
+   DESKTOP
+   =============================== */
 @media (min-width:1024px){
   .card{
     max-width:480px;
@@ -390,6 +319,7 @@ input.error{
   }
 }
 </style>
+
 </head>
 
 <body>
@@ -599,6 +529,7 @@ let current = 1, total = 7;
 
 let loveRainInterval = null;
 let emojiRainInterval = null;
+let slide1Played = false; // ⬅️ PENTING
 
 const music = document.getElementById("music");
 music.volume = 0;
@@ -624,20 +555,17 @@ function unlock(){
     setTimeout(()=>{
       lock.style.display = "none";
       content.style.display = "flex";
+
       onSlideEnter(1);
+
       music.play();
       fadeInMusic();
       renderDots();
-
-      // effect slide 1
-      confettiBurst();
-      spawnFloatingHeart();
-      setTimeout(spawnFloatingHeart, 800);
-      setTimeout(spawnFloatingHeart, 1600);
     },300);
 
   } else {
     pass.classList.add("error");
+
     const msgs = [
       "ehh masa lupa sih 😭",
       "yang bener dong 😏",
@@ -647,6 +575,7 @@ function unlock(){
       "tanya jaki sana deh!!!",
       "tanggal jadian kita anjir😤"
     ];
+
     alert(msgs[Math.floor(Math.random() * msgs.length)]);
     setTimeout(()=>pass.classList.remove("error"),300);
   }
@@ -656,28 +585,27 @@ function unlock(){
    SLIDE NAVIGATION
    =============================== */
 function next(n){
-  stopAllRain();
+  stopEmojiRain();
 
   document.getElementById("s"+n).style.display="none";
   document.getElementById("s"+(n+1)).style.display="block";
   current = n+1;
   updateUI();
 
-  if(current === 2){
-    startLoveRain();
-  }
   onSlideEnter(current);
 }
 
 function back(){
   if(current > 1){
-    stopAllRain();
+    stopEmojiRain();
+
     document.getElementById("s"+current).style.display="none";
     document.getElementById("s"+(current-1)).style.display="block";
     current--;
     updateUI();
+
+    onSlideEnter(current);
   }
-  onSlideEnter(current);
 }
 
 function updateUI(){
@@ -692,6 +620,41 @@ function renderDots(){
     html+=`<span class="dot ${i<=current?'active':''}"></span>`;
   }
   prog.innerHTML=html;
+}
+
+/* ===============================
+   SLIDE ENTER LOGIC (FINAL)
+   =============================== */
+function onSlideEnter(slide){
+
+  // SLIDE 1 — sekali aja
+  if(slide === 1 && !slide1Played){
+    slide1Played = true;
+
+    bigConfettiExplosion();
+
+    spawnFloatingHeart();
+    setTimeout(spawnFloatingHeart, 800);
+    setTimeout(spawnFloatingHeart, 1600);
+
+    startLoveRainSmooth();
+  }
+
+  // SLIDE 2–5 — love rain jalan normal
+  if(slide >= 2 && slide <= 5){
+    startLoveRain();
+  }
+
+  // SLIDE 6 — emoji mode
+  if(slide === 6){
+    stopLoveRain();
+  }
+
+  // SLIDE 7 — clean (tapi ga matiin permanen)
+  if(slide === 7){
+    stopEmojiRain();
+    stopLoveRain();
+  }
 }
 
 /* ===============================
@@ -711,13 +674,26 @@ function react(e){
 }
 
 /* ===============================
-   LOVE RAIN (AUTO)
+   LOVE RAIN
    =============================== */
 function startLoveRain(){
   if(loveRainInterval) return;
+
   loveRainInterval = setInterval(()=>{
     react("💗");
   },900);
+}
+
+function startLoveRainSmooth(){
+  if(loveRainInterval) return;
+
+  setTimeout(()=>{
+    if(!loveRainInterval){
+      loveRainInterval = setInterval(()=>{
+        react("💗");
+      },1200);
+    }
+  },1400);
 }
 
 function stopLoveRain(){
@@ -726,10 +702,12 @@ function stopLoveRain(){
 }
 
 /* ===============================
-   EMOJI RAIN (USER CLICK)
+   EMOJI RAIN
    =============================== */
 function startEmojiRain(emoji){
-  stopAllRain(); // matiin semua dulu
+  stopLoveRain();
+  stopEmojiRain();
+
   emojiRainInterval = setInterval(()=>{
     react(emoji);
   },700);
@@ -738,11 +716,6 @@ function startEmojiRain(emoji){
 function stopEmojiRain(){
   clearInterval(emojiRainInterval);
   emojiRainInterval = null;
-}
-
-function stopAllRain(){
-  stopLoveRain();
-  stopEmojiRain();
 }
 
 /* ===============================
@@ -759,14 +732,7 @@ function confettiBurst(){
     setTimeout(()=>c.remove(),1800);
   }
 }
-function onSlideEnter(slideNumber){
-  if(slideNumber === 1){
-    confettiBurst();
-    spawnFloatingHeart();
-    setTimeout(spawnFloatingHeart, 800);
-    setTimeout(spawnFloatingHeart, 1600);
-  }
-    }
+
 function spawnFloatingHeart(){
   const h=document.createElement("div");
   h.className="float-heart";
@@ -774,6 +740,26 @@ function spawnFloatingHeart(){
   h.style.left=Math.random()*100+"vw";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),6000);
+}
+
+function bigConfettiExplosion(){
+  const card = document.querySelector("#s1");
+
+  card.classList.add("shake-center");
+
+  setTimeout(()=>{
+    card.classList.remove("shake-center");
+
+    for(let i=0;i<10;i++){
+      const c = document.createElement("div");
+      c.className = "confetti-big";
+      c.innerText = "🎉";
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),1400);
+    }
+
+    confettiBurst();
+  },400);
 }
 
 /* ===============================
@@ -807,7 +793,8 @@ function fadeOutMusic(){
    WHATSAPP
    =============================== */
 function wa(){
-  stopAllRain();
+  stopEmojiRain();
+  stopLoveRain();
   fadeOutMusic();
 
   const text = `makacii jakiii gantenggg, akuuu cayangg cekalii camaa jakiii,
