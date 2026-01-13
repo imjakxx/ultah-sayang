@@ -418,6 +418,34 @@ input:focus {
   opacity:.8;
   text-align:center;
 }
+/* ===============================
+   LOGIN POLISH (AMAN & HALUS)
+   =============================== */
+
+/* Input glow pas fokus */
+input {
+  transition: box-shadow .25s ease;
+}
+
+input:focus {
+  box-shadow: 0 0 12px rgba(255,95,162,.6);
+  outline: none;
+}
+
+/* Placeholder pelan ilang */
+input::placeholder {
+  color: rgba(255,230,242,.6);
+  transition: opacity .25s ease;
+}
+
+input:focus::placeholder {
+  opacity: 0;
+}
+
+/* Tombol kerasa dipencet */
+button:active {
+  transform: scale(.96);
+}
 </style>
 
 </head>
