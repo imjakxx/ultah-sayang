@@ -447,44 +447,41 @@ button:active {
   transform: scale(.96);
 }
 /* ===============================
-   LOGIN BACKGROUND GRAIN (LOGIN ONLY)
+   LOGIN GRAIN — OPSI A (ULTRA SUBTLE)
    =============================== */
 
 #lock {
   position: relative;
 }
 
-#lock::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  /* grain super halus */
+#lock::after{
+  content:"";
+  position:fixed;
+  inset:0;
   background-image:
     repeating-linear-gradient(
       0deg,
-      rgba(255,255,255,0.025) 0px,
-      rgba(255,255,255,0.025) 1px,
+      rgba(255,255,255,.02) 0px,
+      rgba(255,255,255,.02) 1px,
       transparent 1px,
       transparent 2px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(255,255,255,0.025) 0px,
-      rgba(255,255,255,0.025) 1px,
+      rgba(255,255,255,.02) 0px,
+      rgba(255,255,255,.02) 1px,
       transparent 1px,
       transparent 2px
     );
-
-  opacity: 0.18;          /* tingkat grain (AMAN) */
-  pointer-events: none;   /* gak ganggu klik */
-  z-index: 0;
+  opacity:.14;          /* ultra halus */
+  pointer-events:none;
+  z-index:0;
 }
 
-/* pastiin card login di atas grain */
-#lock .card {
-  position: relative;
-  z-index: 1;
+/* card login di atas grain */
+#lock .card{
+  position:relative;
+  z-index:1;
 }
 </style>
 
