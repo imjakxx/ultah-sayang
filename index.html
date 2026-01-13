@@ -101,13 +101,14 @@ h1, h2, .name {
 /* ===============================
    SLIDE ICON BASE
    =============================== */
-.slide-icon {
-  font-size: 24px;       /* ukuran aman & proporsional */
+.accent{
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  font-size: 32px;   /* ukuran lebih gede & kebaca */
   line-height: 1;
-  margin-bottom: 10px;
-  display: inline-block;
-  opacity: 0.95;
-  transform-origin: center;
+  z-index: 3;
+  pointer-events: none; /* biar ga ganggu klik */
 }
 /* ===============================
    SLIDE 1 ELEMENTS
@@ -425,6 +426,31 @@ input.error{animation:shake .3s ease}
   opacity:.8;
   text-align:center;
 }
+/* ===============================
+   LOGIN HEART ANIMATION
+   =============================== */
+.login-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+
+.login-heart{
+  display:inline-block;
+  animation: loginHeart 2.2s ease-in-out infinite;
+}
+
+@keyframes loginHeart{
+  0%,100%{
+    transform:scale(1);
+    opacity:.85;
+  }
+  50%{
+    transform:scale(1.25);
+    opacity:1;
+  }
+}
 </style>
 
 </head>
@@ -434,7 +460,10 @@ input.error{animation:shake .3s ease}
 <!-- LOGIN -->
 <div class="screen" id="lock">
   <div class="card">
-    <h2>Hai Renaaa 🤍</h2>
+    <h2 class="login-title">
+  Hai Renaaa 
+  <span class="login-heart">🤍</span>
+    </h2>
     <p>
 Sebelum lanjut,<br>
 tebak-tebakan dulu kita… pasti tau lah jawabannya eaa
