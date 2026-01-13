@@ -89,6 +89,7 @@ h1, h2, .name {
    SLIDE ANIMATION
    =============================== */
 .slide{
+  position: relative; /* INI KUNCI UTAMA */
   animation:slide .5s ease;
 }
 .slide.center{
@@ -105,10 +106,12 @@ h1, h2, .name {
   position: absolute;
   top: 20px;
   left: 22px;
-  font-size: 32px;   /* ukuran lebih gede & kebaca */
+  font-size: 32px;
   line-height: 1;
   z-index: 3;
-  pointer-events: none; /* biar ga ganggu klik */
+  pointer-events: none;
+  animation: none !important;
+  transform: none !important;
 }
 /* ===============================
    SLIDE 1 ELEMENTS
