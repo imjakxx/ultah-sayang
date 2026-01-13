@@ -483,6 +483,54 @@ button:active {
   position:relative;
   z-index:1;
 }
+/* ===============================
+   SLIDE AKHIR — POLISH FINAL
+   =============================== */
+
+/* emoji pojok slide akhir */
+#s7 .accent.road{
+  font-size:32px;                 /* samain ukuran */
+  margin-bottom:12px;
+  display:inline-block;
+  animation: roadFloat 3s ease-in-out infinite;
+}
+
+@keyframes roadFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+/* Bekasi → Jogja lebih rapi & lucu */
+#s7 .otw{
+  margin:18px 0 6px;
+  font-size:15px;
+  letter-spacing:1px;
+  opacity:.9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+/* panah jalan animasi */
+#s7 .otw::before{
+  content:"🚗";
+  animation: drive 2.8s ease-in-out infinite;
+}
+
+@keyframes drive{
+  0%{transform:translateX(0);opacity:.4}
+  50%{transform:translateX(10px);opacity:1}
+  100%{transform:translateX(0);opacity:.4}
+}
+
+/* kalimat penutup lebih “ending” */
+#s7 p b{
+  display:block;
+  margin-top:10px;
+  font-size:18px;
+  letter-spacing:.4px;
+}
 </style>
 
 </head>
